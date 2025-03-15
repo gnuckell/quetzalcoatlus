@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5b4j8rg2erfk"]
+[gd_scene load_steps=5 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
+[ext_resource type="Texture2D" uid="uid://wt2fq25mo2x5" path="res://assets/mamabirdtest.png" id="2_s027a"]
 
-[sub_resource type="GDScript" id="GDScript_s027a"]
-script/source = "extends CharacterBody3D
-
-func _physics_process(delta: float) -> void:
-	if is_on_floor(): return
-	
-	velocity += ProjectSettings.get_setting(\"physics/3d/default_gravity_vector\") * ProjectSettings.get_setting(\"physics/3d/default_gravity\")
-	self.move_and_slide()
-"
+[sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s027a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="GDScript" id="GDScript_rwm0n"]
 script/source = "extends Behavior
 
-@export var move_speed : float = 100.0
-
-func _physics_process(delta: float) -> void:
+func _physics_process_unstunned(delta: float) -> void:
 	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
 	var vector : Vector3 = Vector3(input.x, 0.0, input.y)
 	
-	pawn.velocity = vector * move_speed
-	pawn.move_and_slide()
+	#pawn.velocity_flat += vector * walk_speed
+	pawn.walk_vector = vector
 
 
 func _input(event: InputEvent) -> void:
@@ -31,17 +31,26 @@ func _input(event: InputEvent) -> void:
 
 
 func interact() -> void:
+	if is_stunned: return
 	print(\"interact!\")
 	
 "
 
 [node name="player" instance=ExtResource("1_rwm0n")]
 floor_constant_speed = true
-script = SubResource("GDScript_s027a")
+walk_accel = 0.8
+walk_damping = 0.175
 
-[node name="label_3d" parent="sprite/debug" index="0"]
+[node name="sprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_14505")
+
+[node name="placeholder" parent="sprite" index="0"]
+visible = false
 text = "PLAYER"
 
 [node name="behavior" parent="." index="2"]
 script = SubResource("GDScript_rwm0n")
-move_speed = 2.0
+walk_speed = 0.2
+
+[node name="nav_timer" parent="behavior" index="0"]
+process_mode = 4

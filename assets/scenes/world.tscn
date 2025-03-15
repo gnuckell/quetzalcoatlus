@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddr2477jk1xyg"]
+[gd_scene load_steps=11 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/player.tscn" id="1_ypxwc"]
+[ext_resource type="PackedScene" uid="uid://d3q1efqvmoxic" path="res://assets/scenes/pawn_baby.tscn" id="2_gc7y0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ypxwc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -14,7 +15,24 @@ sky_material = SubResource("ProceduralSkyMaterial_ypxwc")
 sky = SubResource("Sky_gc7y0")
 tonemap_mode = 2
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ypxwc"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gc7y0"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gc7y0"]
+vertices = PackedVector3Array(-9, 0.0999999, -9, -9, 0.0999999, 9, 9, 0.0999999, 9, 9, 0.0999999, -9, -4.1, 0.65, -4.1, -4.0199, 0.0999999, 1.9879, 2.04005, 0.0999999, -4.05605)
+polygons = [PackedInt32Array(2, 6, 3), PackedInt32Array(3, 6, 0), PackedInt32Array(0, 5, 1), PackedInt32Array(1, 5, 2), PackedInt32Array(2, 5, 6), PackedInt32Array(6, 4, 0), PackedInt32Array(0, 4, 5), PackedInt32Array(5, 4, 6)]
+cell_size = 1.0
+cell_height = 0.05
+agent_radius = 0.1
+agent_max_climb = 5.0
+agent_max_slope = 89.0
+edge_max_error = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gc7y0"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gc7y0"]
+height = 10.0
+radius = 5.25
 
 [node name="world" type="Node3D"]
 
@@ -25,10 +43,49 @@ environment = SubResource("Environment_0moxn")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="floor" type="StaticBody3D" parent="."]
+[node name="world_floor" type="StaticBody3D" parent="."]
 
-[node name="shape" type="CollisionShape3D" parent="floor"]
-shape = SubResource("WorldBoundaryShape3D_ypxwc")
+[node name="shape" type="CollisionShape3D" parent="world_floor"]
+shape = SubResource("WorldBoundaryShape3D_gc7y0")
+
+[node name="navigation_region_3d" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_gc7y0")
+
+[node name="floor" type="StaticBody3D" parent="navigation_region_3d"]
+
+[node name="shape" type="CollisionShape3D" parent="navigation_region_3d/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_gc7y0")
+
+[node name="home" type="Node3D" parent="navigation_region_3d"]
+
+[node name="model" parent="navigation_region_3d/home" instance=ExtResource("1_betll")]
+
+[node name="area" type="Area3D" parent="navigation_region_3d/home"]
+
+[node name="shape" type="CollisionShape3D" parent="navigation_region_3d/home/area"]
+shape = SubResource("CylinderShape3D_gc7y0")
+
+[node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+script = null
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
+
+[node name="pawn_baby_2" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+script = null
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby_2" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
+
+[node name="pawn_baby_3" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+script = null
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby_3" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
 
 [node name="player" parent="." instance=ExtResource("1_ypxwc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -40,10 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 
 [node name="camera_3d" type="Camera3D" parent="player/node_3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
+projection = 1
 current = true
 fov = 1.0
 size = 10.0
 
-[node name="home_nest" parent="." instance=ExtResource("1_betll")]
-
-[editable path="home_nest"]
+[editable path="navigation_region_3d/home/model"]
+[editable path="navigation_region_3d/home/pawn_baby"]
+[editable path="navigation_region_3d/home/pawn_baby_2"]
+[editable path="navigation_region_3d/home/pawn_baby_3"]

@@ -15,6 +15,10 @@ run/main_scene="uid://ddr2477jk1xyg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+
 [display]
 
 window/size/viewport_width=1920
@@ -25,6 +29,8 @@ window/layer_4="hitbox"
 
 naming/node_name_num_separator=2
 naming/node_name_casing=2
+naming/default_signal_callback_name="_{node_name}_{signal_name}"
+naming/default_signal_callback_to_self_name="_{signal_name}"
 naming/script_name_casing=2
 
 [input]

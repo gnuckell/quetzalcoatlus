@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1fvcg0dlxg2e"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_betll"]
+size = Vector2(100, 100)
+
+[node name="placeholder" type="Label3D"]
+sorting_offset = 0.1
+billboard = 1
+text = "OBJECT"
+font_size = 48
+
+[node name="debug" type="Sprite3D" parent="."]
+billboard = 1
+transparent = false
+double_sided = false
+texture_filter = 0
+texture = SubResource("PlaceholderTexture2D_betll")
