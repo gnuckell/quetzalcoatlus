@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5b4j8rg2erfk"]
+
+[ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
+
+[sub_resource type="GDScript" id="GDScript_s027a"]
+script/source = "extends CharacterBody3D
+
+func _physics_process(delta: float) -> void:
+	if is_on_floor(): return
+	
+	velocity += ProjectSettings.get_setting(\"physics/3d/default_gravity_vector\") * ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+	self.move_and_slide()
+"
+
+[sub_resource type="GDScript" id="GDScript_rwm0n"]
+script/source = "extends Behavior
+
+@export var move_speed : float = 100.0
+
+func _physics_process(delta: float) -> void:
+	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
+	var vector : Vector3 = Vector3(input.x, 0.0, input.y)
+	
+	pawn.velocity = vector * move_speed
+	pawn.move_and_slide()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&\"interact\"):
+		interact()
+
+
+func interact() -> void:
+	print(\"interact!\")
+	
+"
+
+[node name="player" instance=ExtResource("1_rwm0n")]
+floor_constant_speed = true
+script = SubResource("GDScript_s027a")
+
+[node name="label_3d" parent="sprite/debug" index="0"]
+text = "PLAYER"
+
+[node name="behavior" parent="." index="2"]
+script = SubResource("GDScript_rwm0n")
+move_speed = 2.0

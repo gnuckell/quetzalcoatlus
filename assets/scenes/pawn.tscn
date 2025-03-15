@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://ir7jko68gpr2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_betll"]
+size = Vector2(100, 100)
+
+[node name="pawn" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_st1bq")
+
+[node name="sprite" type="AnimatedSprite3D" parent="."]
+billboard = 1
+
+[node name="debug" type="Sprite3D" parent="sprite"]
+billboard = 1
+texture = SubResource("PlaceholderTexture2D_betll")
+
+[node name="label_3d" type="Label3D" parent="sprite/debug"]
+sorting_offset = 0.1
+billboard = 1
+text = "PAWN"
+font_size = 48
+
+[node name="sprite_area" type="Area3D" parent="sprite"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="shape" type="CollisionShape3D" parent="sprite/sprite_area"]
+shape = SubResource("BoxShape3D_st1bq")
+
+[node name="behavior" type="NavigationAgent3D" parent="."]
