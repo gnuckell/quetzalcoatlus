@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
-[ext_resource type="Texture2D" uid="uid://wt2fq25mo2x5" path="res://assets/mamabirdtest.png" id="2_s027a"]
+[ext_resource type="Texture2D" uid="uid://wt2fq25mo2x5" path="res://assets/sprites/mamabirdtest.png" id="2_s027a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
 animations = [{
@@ -41,16 +41,16 @@ floor_constant_speed = true
 walk_accel = 0.8
 walk_damping = 0.175
 
-[node name="sprite" parent="." index="1"]
+[node name="sprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_14505")
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
 text = "PLAYER"
 
-[node name="behavior" parent="." index="2"]
+[node name="behavior" parent="." index="2" node_paths=PackedStringArray("pawn")]
 script = SubResource("GDScript_rwm0n")
-walk_speed = 0.2
+pawn = NodePath("..")
 
 [node name="nav_timer" parent="behavior" index="0"]
 process_mode = 4

@@ -4,11 +4,12 @@ const TARGET_POSITION_MAX_ATTEMPTS : int = 8
 
 signal state_changed(value: int)
 
+@export var pawn : Pawn = get_parent()
 @export var home_area : Area3D
 
+@export_category("Wander")
 @export var wander_distance_range : FloatRange
 @export var wander_time_range : FloatRange
-@export var walk_speed : float = 1.0
 
 var _target_node : Node3D
 var target_node : Node3D :
@@ -32,14 +33,14 @@ var state : int :
 		if _state == value: return
 		_state = value
 		state_changed.emit(_state)
-
-var pawn : Pawn :
-	get: return get_parent() as Pawn
+		
 
 func _ready() -> void:
 	if home_area:
 		home_area.body_entered.connect(_when_entered_home_area)
 		home_area.body_exited.connect(_when_exited_home_area)
+		
+	$wander_timer.timeout.connect(wander)
 
 
 func _when_state_changed(value: int) -> void: pass
@@ -54,20 +55,21 @@ func _when_exited_home_area(body: Node3D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if pawn == null or is_stunned: return
+	if is_stunned: return
 	_physics_process_unstunned(delta)
 func _physics_process_unstunned(delta: float) -> void: pass
 
 
 func physics_process_walk_to_target(delta: float) -> void:
-	pawn.velocity_flat += get_walk_direction() * walk_speed
+	pawn.walk_vector = get_walk_direction()
+	pass
 
 
 func wander():
 	self.target_node = null
 	self.target_position = _get_wander_position()
 	
-	$wander_timer.time_left = wander_time_range.get_random_value()
+	$wander_timer.wait_time = wander_time_range.get_random_value()
 	$wander_timer.start()
 	
 	

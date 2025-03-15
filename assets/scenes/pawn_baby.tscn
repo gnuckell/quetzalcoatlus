@@ -22,6 +22,11 @@ signal when_fed
 var food_eaten : int
 var hunger_time_remaining : float = 60.0
 
+func _ready() -> void:
+	super._ready()
+	
+	wander()
+
 
 func _physics_process_unstunned(delta: float) -> void:
 	match state:
@@ -68,7 +73,11 @@ metadata/_custom_type_script = "uid://bfm2m5jgefara"
 [node name="placeholder" parent="sprite" index="0"]
 text = "BABY"
 
-[node name="behavior" parent="." index="2"]
+[node name="behavior" parent="." index="2" node_paths=PackedStringArray("pawn")]
 script = SubResource("GDScript_yhtjp")
+pawn = NodePath("..")
 wander_distance_range = SubResource("Resource_v5ewb")
 wander_time_range = SubResource("Resource_w2hqq")
+
+[node name="wander_timer" parent="behavior" index="1"]
+autostart = true

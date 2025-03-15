@@ -11,11 +11,9 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_bdn8e")
 
-[node name="shape" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_st1bq")
-
 [node name="sprite" type="AnimatedSprite3D" parent="."]
 billboard = 1
+alpha_cut = 1
 
 [node name="placeholder" parent="sprite" instance=ExtResource("1_dxlvn")]
 text = "PAWN"
@@ -25,6 +23,9 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="shape" type="CollisionShape3D" parent="sprite/sprite_area"]
+shape = SubResource("BoxShape3D_st1bq")
+
+[node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
 
 [node name="behavior" type="NavigationAgent3D" parent="."]
