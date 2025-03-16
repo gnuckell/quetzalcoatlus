@@ -76,6 +76,7 @@ interact={
 3d_physics/layer_3="pawn_physics"
 2d_physics/layer_4="pawn_hitbox"
 3d_physics/layer_4="pawn_hitbox"
+3d_physics/layer_5="peck"
 
 [physics]
 
