@@ -14,7 +14,7 @@ var velocity_flat : Vector3 :
 	set(value): self.velocity = Vector3(value.x, self.velocity.y, value.z)
 
 func _physics_process(delta: float) -> void:
-	velocity -= velocity * walk_damping
+	velocity -= velocity_flat * walk_damping
 	velocity += walk_vector * walk_accel
 	
 	if not is_on_floor():

@@ -4,7 +4,6 @@ const TARGET_POSITION_MAX_ATTEMPTS : int = 8
 
 signal state_changed(value: int)
 
-@export var pawn : Pawn = get_parent()
 @export var home_area : Area3D
 
 @export_category("Wander")
@@ -33,14 +32,17 @@ var state : int :
 		if _state == value: return
 		_state = value
 		state_changed.emit(_state)
-		
+
+
+@onready var pawn : Pawn = self.get_parent()
+
 
 func _ready() -> void:
 	if home_area:
 		home_area.body_entered.connect(_when_entered_home_area)
 		home_area.body_exited.connect(_when_exited_home_area)
 		
-	$wander_timer.timeout.connect(wander)
+	prints(pawn, pawn.get_script())
 
 
 func _when_state_changed(value: int) -> void: pass
@@ -62,12 +64,13 @@ func _physics_process_unstunned(delta: float) -> void: pass
 
 func physics_process_walk_to_target(delta: float) -> void:
 	pawn.walk_vector = get_walk_direction()
-	pass
-
 
 func wander():
+	if wander_time_range == null: return
+	
 	self.target_node = null
 	self.target_position = _get_wander_position()
+	print("wandering to ", self.target_position)
 	
 	$wander_timer.wait_time = wander_time_range.get_random_value()
 	$wander_timer.start()
@@ -82,6 +85,8 @@ func _get_wander_position() -> Vector3:
 	
 
 func get_random_nearby_position() -> Vector3:
+	if wander_distance_range == null: return self.pawn.global_position
+	
 	var result : Vector3
 	var map := self.pawn.get_world_3d().navigation_map
 
@@ -104,3 +109,7 @@ func wait(delay : float) :
 
 func update_target_position():
 	self.target_position = target_node.global_position
+
+
+func _when_target_reached() -> void:
+	print("reached target!")

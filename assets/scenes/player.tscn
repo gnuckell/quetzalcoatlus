@@ -19,10 +19,7 @@ script/source = "extends Behavior
 
 func _physics_process_unstunned(delta: float) -> void:
 	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
-	var vector : Vector3 = Vector3(input.x, 0.0, input.y)
-	
-	#pawn.velocity_flat += vector * walk_speed
-	pawn.walk_vector = vector
+	pawn.walk_vector = Vector3(input.x, 0.0, input.y)
 
 
 func _input(event: InputEvent) -> void:
@@ -42,15 +39,17 @@ walk_accel = 0.8
 walk_damping = 0.175
 
 [node name="sprite" parent="." index="0"]
+offset = Vector2(0, 400)
 sprite_frames = SubResource("SpriteFrames_14505")
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
 text = "PLAYER"
 
-[node name="behavior" parent="." index="2" node_paths=PackedStringArray("pawn")]
+[node name="behavior" parent="." index="2"]
 script = SubResource("GDScript_rwm0n")
-pawn = NodePath("..")
+wander_distance_range = null
+wander_time_range = null
 
 [node name="nav_timer" parent="behavior" index="0"]
 process_mode = 4

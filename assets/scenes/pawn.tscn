@@ -1,15 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://ir7jko68gpr2"]
+[gd_scene load_steps=8 format=3 uid="uid://ir7jko68gpr2"]
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
+[ext_resource type="Script" uid="uid://cb0ybvp7mt17e" path="res://assets/scripts/behavior.gd" id="3_thq2t"]
+[ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="4_xig1i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="Resource" id="Resource_ouwj3"]
+script = ExtResource("4_xig1i")
+minimum = 10.0
+maximum = 20.0
+allow_negatives_in_random = false
+metadata/_custom_type_script = "uid://bfm2m5jgefara"
+
+[sub_resource type="Resource" id="Resource_6lxlu"]
+script = ExtResource("4_xig1i")
+minimum = 2.0
+maximum = 2.0
+allow_negatives_in_random = false
+metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [node name="pawn" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_bdn8e")
+walk_accel = 1.0
 
 [node name="sprite" type="AnimatedSprite3D" parent="."]
 billboard = 1
@@ -29,6 +46,12 @@ shape = SubResource("BoxShape3D_st1bq")
 shape = SubResource("BoxShape3D_st1bq")
 
 [node name="behavior" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+debug_enabled = true
+script = ExtResource("3_thq2t")
+wander_distance_range = SubResource("Resource_ouwj3")
+wander_time_range = SubResource("Resource_6lxlu")
 
 [node name="nav_timer" type="Timer" parent="behavior"]
 process_callback = 0
@@ -37,3 +60,7 @@ autostart = true
 
 [node name="wander_timer" type="Timer" parent="behavior"]
 process_callback = 0
+autostart = true
+
+[connection signal="target_reached" from="behavior" to="behavior" method="_when_target_reached"]
+[connection signal="timeout" from="behavior/wander_timer" to="behavior" method="wander"]
