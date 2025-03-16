@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
-[ext_resource type="Texture2D" uid="uid://wt2fq25mo2x5" path="res://assets/sprites/mamabirdtest.png" id="2_s027a"]
+[ext_resource type="Texture2D" uid="uid://cdniwa5lp2wa2" path="res://assets/sprites/player test2.png" id="2_s027a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
 animations = [{
