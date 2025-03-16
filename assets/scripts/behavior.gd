@@ -9,6 +9,7 @@ signal state_changed(value: int)
 @export_category("Wander")
 @export var wander_distance_range : FloatRange
 @export var wander_time_range : FloatRange
+@export var home_radius : float = 5.0
 
 var _target_node : Node3D
 var target_node : Node3D :
@@ -22,8 +23,9 @@ var target_node : Node3D :
 		else:
 			$nav_timer.timeout.disconnect(update_target_position)
 
+var is_inside_home : bool :
+	get: return home_radius != null and is_position_inside_home(pawn.global_position)
 var is_stunned : bool
-var is_inside_home : bool
 
 var _state : int
 var state : int :
@@ -42,7 +44,6 @@ func _ready() -> void:
 		home_area.body_entered.connect(_when_entered_home_area)
 		home_area.body_exited.connect(_when_exited_home_area)
 		
-	prints(pawn, pawn.get_script())
 
 
 func _when_state_changed(value: int) -> void: pass
@@ -70,14 +71,13 @@ func wander():
 	
 	self.target_node = null
 	self.target_position = _get_wander_position()
-	print("wandering to ", self.target_position)
 	
 	$wander_timer.wait_time = wander_time_range.get_random_value()
 	$wander_timer.start()
 	
 	
 func get_walk_direction() -> Vector3:
-	return (self.get_next_path_position() - pawn.global_position) * Vector3(1, 0, 1)
+	return (self.get_next_path_position() - pawn.global_position).normalized() * Vector3(1, 0, 1)
 
 
 func _get_wander_position() -> Vector3:
@@ -91,8 +91,7 @@ func get_random_nearby_position() -> Vector3:
 	var map := self.pawn.get_world_3d().navigation_map
 
 	for i in TARGET_POSITION_MAX_ATTEMPTS:
-		result = self.pawn.global_position \
-		+ Vector3(wander_distance_range.get_random_value(), 0, wander_distance_range.get_random_value())
+		result = self.pawn.global_position + wander_distance_range.get_random_vector3()
 		var closest := NavigationServer3D.map_get_closest_point(map, result)
 		var delta := (closest - result) * Vector3(1, 0, 1)
 		if delta.is_zero_approx(): return closest
@@ -100,7 +99,22 @@ func get_random_nearby_position() -> Vector3:
 
 
 func get_random_home_position() -> Vector3:
+	if wander_distance_range == null: return self.pawn.global_position
+	
+	var result : Vector3
+	var map := self.pawn.get_world_3d().navigation_map
+	
+	for i in TARGET_POSITION_MAX_ATTEMPTS:
+		result = self.pawn.global_position + wander_distance_range.get_random_vector3()
+		var closest := NavigationServer3D.map_get_closest_point(map, result)
+		var delta := (closest - result) * Vector3(1, 0, 1)
+		if is_position_inside_home(result): return closest
 	return get_random_nearby_position()
+	
+	
+func is_position_inside_home(pos: Vector3) -> bool:
+	var delta := home_area.global_position - pos
+	return delta.length() < home_radius
 
 
 func wait(delay : float) :
@@ -112,4 +126,5 @@ func update_target_position():
 
 
 func _when_target_reached() -> void:
-	print("reached target!")
+	#print("target reached!")
+	pass

@@ -67,13 +67,22 @@ shape = SubResource("BoxShape3D_gc7y0")
 shape = SubResource("CylinderShape3D_gc7y0")
 
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
-walk_accel = 0.5
+walk_damping = 0.5
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
 
 [node name="pawn_baby_2" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
-walk_accel = 0.5
+walk_damping = 0.5
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby_2" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
 
 [node name="pawn_baby_3" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
-walk_accel = 0.5
+walk_damping = 0.5
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby_3" index="2" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../area")
 
 [node name="player" parent="." instance=ExtResource("1_ypxwc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -81,7 +90,7 @@ floor_stop_on_slope = false
 floor_max_angle = 1.55334
 
 [node name="node_3d" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2, 0)
 
 [node name="camera_3d" type="Camera3D" parent="player/node_3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
@@ -91,3 +100,6 @@ fov = 1.0
 size = 10.0
 
 [editable path="navigation_region_3d/home/model"]
+[editable path="navigation_region_3d/home/pawn_baby"]
+[editable path="navigation_region_3d/home/pawn_baby_2"]
+[editable path="navigation_region_3d/home/pawn_baby_3"]

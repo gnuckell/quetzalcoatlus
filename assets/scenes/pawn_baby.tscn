@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=6 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="2_v5ewb"]
@@ -29,9 +29,9 @@ func _ready() -> void:
 
 
 func _physics_process_unstunned(delta: float) -> void:
-	physics_process_walk_to_target(delta)
-	#match state:
-		#IDLING: physics_process_walk_to_target(delta)
+	#physics_process_walk_to_target(delta)
+	match state:
+		IDLING: physics_process_walk_to_target(delta)
 
 
 func _get_wander_position() -> Vector3:
@@ -59,12 +59,21 @@ func _when_state_changed(value: int) -> void:
 
 [sub_resource type="Resource" id="Resource_v5ewb"]
 script = ExtResource("2_v5ewb")
-minimum = 2.0
-maximum = 4.0
+minimum = 3.0
+maximum = 5.0
+allow_negatives_in_random = false
+metadata/_custom_type_script = "uid://bfm2m5jgefara"
+
+[sub_resource type="Resource" id="Resource_w2hqq"]
+script = ExtResource("2_v5ewb")
+minimum = 8.0
+maximum = 12.0
 allow_negatives_in_random = false
 metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [node name="pawn_baby" instance=ExtResource("1_yhtjp")]
+walk_accel = 0.1
+walk_damping = 0.05
 
 [node name="placeholder" parent="sprite" index="0"]
 text = "BABY"
@@ -72,3 +81,4 @@ text = "BABY"
 [node name="behavior" parent="." index="2"]
 script = SubResource("GDScript_yhtjp")
 wander_distance_range = SubResource("Resource_v5ewb")
+wander_time_range = SubResource("Resource_w2hqq")

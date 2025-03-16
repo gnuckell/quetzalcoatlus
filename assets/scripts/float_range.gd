@@ -11,5 +11,11 @@ func _init(__minimum: float = 0.0, __maximum: float = 0.0) -> void:
 
 
 func get_random_value(random: RandomNumberGenerator = null) -> float:
-	if random: return random.randf_range(minimum, maximum) * (1.0 if random.randi() % 2 else -1.0)
-	else: return randf_range(minimum, maximum) * (1.0 if randi() % 2 else -1.0)
+	if random: return random.randf_range(minimum, maximum)
+	else: return randf_range(minimum, maximum)
+	
+
+func get_random_vector3(random: RandomNumberGenerator = null) -> Vector3:
+	if random: return Vector3(get_random_value(random) * (1.0 if random.randi() % 2 else -1.0), get_random_value(random) * (1.0 if random.randi() % 2 else -1.0), get_random_value(random) * (1.0 if random.randi() % 2 else -1.0))
+	else: return Vector3(get_random_value() * (1.0 if randi() % 2 else -1.0), get_random_value() * (1.0 if randi() % 2 else -1.0), get_random_value() * (1.0 if randi() % 2 else -1.0))
+	
