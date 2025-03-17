@@ -128,3 +128,12 @@ func update_target_position():
 func _when_target_reached() -> void:
 	#print("target reached!")
 	pass
+	
+
+func _when_entered_selection(other: Pawn) -> void:
+	pass
+	
+
+func _when_exited_selection(other: Pawn) -> void:
+	pass
+	
