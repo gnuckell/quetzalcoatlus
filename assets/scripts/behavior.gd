@@ -37,6 +37,7 @@ var state : int :
 
 
 @onready var pawn : Pawn = self.get_parent()
+@onready var grabber : Generic6DOFJoint3D = self.get_parent().find_child("grabber")
 
 
 func _ready() -> void:

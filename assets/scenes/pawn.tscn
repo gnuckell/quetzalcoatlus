@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ir7jko68gpr2"]
+[gd_scene load_steps=9 format=3 uid="uid://ir7jko68gpr2"]
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
@@ -7,6 +7,25 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_xig1i"]
+resource_name = "grabber"
+script/source = "extends Generic6DOFJoint3D
+
+var _grabbed_body : PhysicsBody3D
+var grabbed_body : PhysicsBody3D :
+	get: return _grabbed_body
+	set(value):
+		if _grabbed_body == value: return
+
+		if _grabbed_body is Pawn:
+			_grabbed_body.is_phased = false
+
+		_grabbed_body = value
+		
+		if _grabbed_body is Pawn:
+			_grabbed_body.is_phased = true
+"
 
 [sub_resource type="Resource" id="Resource_ouwj3"]
 script = ExtResource("4_xig1i")
@@ -25,6 +44,9 @@ metadata/_custom_type_script = "uid://bfm2m5jgefara"
 [node name="pawn" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_bdn8e")
 walk_accel = 1.0
 
@@ -45,6 +67,10 @@ shape = SubResource("BoxShape3D_st1bq")
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
+
+[node name="grabber" type="Generic6DOFJoint3D" parent="."]
+node_a = NodePath("..")
+script = SubResource("GDScript_xig1i")
 
 [node name="behavior" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5

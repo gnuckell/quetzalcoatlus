@@ -18,6 +18,8 @@ animations = [{
 [sub_resource type="GDScript" id="GDScript_rwm0n"]
 script/source = "extends Behavior
 
+signal pecked
+
 func _physics_process_unstunned(delta: float) -> void:
 	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
 	pawn.walk_vector = Vector3(input.x, 0.0, input.y)
@@ -30,7 +32,7 @@ func _input(event: InputEvent) -> void:
 
 func interact() -> void:
 	if is_stunned: return
-	print(\"interact!\")
+	pecked.emit()
 	
 "
 
@@ -75,9 +77,16 @@ func refresh_selection_marker() -> void:
 	(selection if selection != null else $shape).add_child(selection_marker)
 	
 
-
 func get_highest_priority_selection() -> Node3D:
 	return selections[0] if selections else null
+
+
+func peck() -> void:
+	if selection == null: return
+	
+	#if selection is Pawn:
+		
+		
 "
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s027a"]
@@ -120,5 +129,6 @@ shape = SubResource("CylinderShape3D_s027a")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
 text = "SELECTION"
 
+[connection signal="pecked" from="behavior" to="peck_area" method="peck"]
 [connection signal="body_entered" from="peck_area" to="peck_area" method="_when_body_entered"]
 [connection signal="body_exited" from="peck_area" to="peck_area" method="_when_body_exited"]
