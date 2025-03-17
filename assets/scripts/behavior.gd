@@ -107,7 +107,6 @@ func get_random_home_position() -> Vector3:
 	for i in TARGET_POSITION_MAX_ATTEMPTS:
 		result = self.pawn.global_position + wander_distance_range.get_random_vector3()
 		var closest := NavigationServer3D.map_get_closest_point(map, result)
-		var delta := (closest - result) * Vector3(1, 0, 1)
 		if is_position_inside_home(result): return closest
 	return get_random_nearby_position()
 	

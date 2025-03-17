@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5b4j8rg2erfk"]
+[gd_scene load_steps=8 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
 [ext_resource type="Texture2D" uid="uid://cdniwa5lp2wa2" path="res://assets/sprites/player test2.png" id="2_s027a"]
+[ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="3_14505"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
 animations = [{
@@ -36,14 +37,43 @@ func interact() -> void:
 [sub_resource type="GDScript" id="GDScript_s027a"]
 script/source = "extends Area3D
 
+@onready var selection_marker : Node3D = $shape/selection_marker
+
+var selection : Node3D
 var selections : Array[Node3D]
 
+func _ready() -> void:
+	refresh_selection_marker()
+	
+
+func _physics_process(delta: float) -> void:
+	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
+	if input.is_zero_approx(): return
+	input = input.normalized()
+	self.rotation = Vector3.UP * atan2(-input.y, input.x)
+	
+
 func _when_body_entered(body: Node3D) -> void:
+	if body == get_parent(): return
 	selections.push_back(body)
+	refresh_selection_marker()
 
 
 func _when_body_exited(body: Node3D) -> void:
+	if body == get_parent(): return
 	selections.erase(body)
+	refresh_selection_marker()
+	
+	
+func refresh_selection_marker() -> void:
+	var new_selection : Node3D = get_highest_priority_selection()
+	if selection == new_selection: return
+	selection = new_selection
+	
+	selection_marker.visible = selection != null
+	selection_marker.get_parent().remove_child(selection_marker)
+	(selection if selection != null else $shape).add_child(selection_marker)
+	
 
 
 func get_highest_priority_selection() -> Node3D:
@@ -60,7 +90,7 @@ walk_accel = 0.8
 walk_damping = 0.175
 
 [node name="sprite" parent="." index="0"]
-offset = Vector2(0, 350)
+offset = Vector2(180, 350)
 sprite_frames = SubResource("SpriteFrames_14505")
 
 [node name="placeholder" parent="sprite" index="0"]
@@ -83,6 +113,12 @@ script = SubResource("GDScript_s027a")
 [node name="shape" type="CollisionShape3D" parent="peck_area" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 shape = SubResource("CylinderShape3D_s027a")
+
+[node name="selection_marker" type="Node3D" parent="peck_area/shape" index="0"]
+
+[node name="placeholder" parent="peck_area/shape/selection_marker" index="0" instance=ExtResource("3_14505")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
+text = "SELECTION"
 
 [connection signal="body_entered" from="peck_area" to="peck_area" method="_when_body_entered"]
 [connection signal="body_exited" from="peck_area" to="peck_area" method="_when_body_exited"]
