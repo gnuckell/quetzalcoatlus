@@ -19,11 +19,18 @@ var grabbed_body : PhysicsBody3D :
 		if _grabbed_body == value: return
 
 		if _grabbed_body is Pawn:
+			var pos : Vector3 = _grabbed_body.global_position
+			self.remove_child(_grabbed_body)
+			self.get_tree().root.add_child(_grabbed_body)
+			_grabbed_body.global_position = pos
 			_grabbed_body.is_phased = false
 
 		_grabbed_body = value
 		
 		if _grabbed_body is Pawn:
+			_grabbed_body.get_parent().remove_child(_grabbed_body)
+			self.add_child(_grabbed_body)
+			_grabbed_body.position = Vector3.ZERO
 			_grabbed_body.is_phased = true
 "
 
@@ -41,13 +48,19 @@ maximum = 2.0
 allow_negatives_in_random = false
 metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
-[node name="pawn" type="CharacterBody3D"]
+[node name="pawn" type="CharacterBody3D" node_paths=PackedStringArray("behavior")]
 collision_layer = 4
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+wall_min_slide_angle = 3.14159
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 1.55334
+floor_snap_length = 0.5
 script = ExtResource("1_bdn8e")
+behavior = NodePath("behavior")
 walk_accel = 1.0
 
 [node name="sprite" type="AnimatedSprite3D" parent="."]

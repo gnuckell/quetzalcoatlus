@@ -1,5 +1,6 @@
 class_name Pawn extends CharacterBody3D
 
+@export var behavior : Behavior
 @export_range(0.0, 1.0, 0.1, "or_greater") var walk_accel : float = 0.5
 @export_range(0.0, 1.0) var walk_damping : float = 0.1
 #@export var push_priority : int
@@ -14,10 +15,7 @@ var is_phased : bool :
 		if _is_phased == value: return
 		_is_phased = value
 		
-		self.axis_lock_linear_x = _is_phased
-		self.axis_lock_linear_y = _is_phased
-		self.axis_lock_linear_z = _is_phased
-		
+		velocity = Vector3.ZERO;
 		if _is_phased:
 			temp_collision_layer = self.collision_layer
 			temp_collision_mask = self.collision_mask
@@ -37,10 +35,13 @@ var velocity_flat : Vector3 :
 	set(value): self.velocity = Vector3(value.x, self.velocity.y, value.z)
 
 func _physics_process(delta: float) -> void:
-	velocity -= velocity_flat * walk_damping
-	velocity += walk_vector * walk_accel
+	if is_phased: return
 	
-	if not is_on_floor():
+	velocity -= velocity_flat * walk_damping
+	
+	if is_on_floor():
+		velocity += walk_vector * walk_accel
+	else:
 		velocity += ProjectSettings.get_setting("physics/3d/default_gravity_vector") * ProjectSettings.get_setting("physics/3d/default_gravity")
 	
 	self.move_and_slide()
