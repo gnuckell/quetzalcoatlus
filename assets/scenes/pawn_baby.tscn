@@ -1,95 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=3 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
-[ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="2_v5ewb"]
-
-[sub_resource type="GDScript" id="GDScript_yhtjp"]
-resource_name = "behavior_baby"
-script/source = "extends Behavior
-
-enum {
-	IDLING,
-	CAPTURED,
-}
-
-const STARVING_WARNING_TIME_REMAINING : float = 30.0
-
-signal when_hungry
-signal when_starving
-signal when_starved
-signal when_fed
-
-var food_eaten : int
-var hunger_time_remaining : float = 60.0
-
-var _is_selected_by_player : bool
-var is_selected_by_player : bool :
-	get: return _is_selected_by_player
-	set(value):
-		_is_selected_by_player = value
-		
-		if state == IDLING:
-			pass
-			# open or close mouth
-
-func _ready() -> void:
-	super._ready()
-	
-	wander()
-
-
-func _physics_process_unstunned(delta: float) -> void:
-	#physics_process_walk_to_target(delta)
-	match state:
-		IDLING: physics_process_walk_to_target(delta)
-
-
-func _get_wander_position() -> Vector3:
-	return get_random_home_position() if is_inside_home else super._get_wander_position()
-
-
-func _when_state_changed(value: int) -> void:
-	if state == IDLING: wander()
-	else: $wander_timer.stop()
-	
-
-func _when_entered_selection(other: Pawn) -> void:
-	super._when_entered_selection(other)
-	if entered_selections.has(Pawn.PLAYER):
-		is_selected_by_player = true
-
-func _when_exited_selection(other: Pawn) -> void:
-	super._when_exited_selection(other)
-	if not entered_selections.has(Pawn.PLAYER):
-		is_selected_by_player = false
-
-#if \"hungry\": start crying
-#elif \"in danger\" (starving or being eaten): start screaming and display notification
-#else (safe): stop making sounds
-#
-#if \"selected to be fed\": Stand still.
-	#if \"completely fed\": do nothing or shake head to indicate not hungry. (low priority selection)
-	#else: Open mouth wide
-#else:
-	#if old enough to walk: Wander around aimlessly.
-		#if inside nest: choose a location to never leave nest.
-		#else: choose a random location.
-		
-"
-
-[sub_resource type="Resource" id="Resource_v5ewb"]
-script = ExtResource("2_v5ewb")
-minimum = 3.0
-maximum = 5.0
-allow_negatives_in_random = false
-metadata/_custom_type_script = "uid://bfm2m5jgefara"
-
-[sub_resource type="Resource" id="Resource_w2hqq"]
-script = ExtResource("2_v5ewb")
-minimum = 8.0
-maximum = 12.0
-allow_negatives_in_random = false
-metadata/_custom_type_script = "uid://bfm2m5jgefara"
+[ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
 
 [node name="pawn_baby" instance=ExtResource("1_yhtjp")]
 walk_accel = 0.1
@@ -99,6 +11,6 @@ walk_damping = 0.05
 text = "BABY"
 
 [node name="behavior" parent="." index="4"]
-script = SubResource("GDScript_yhtjp")
-wander_distance_range = SubResource("Resource_v5ewb")
-wander_time_range = SubResource("Resource_w2hqq")
+script = ExtResource("2_v5ewb")
+wander_distance_range = null
+wander_time_range = null

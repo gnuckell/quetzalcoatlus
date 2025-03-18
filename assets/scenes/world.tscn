@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddr2477jk1xyg"]
+[gd_scene load_steps=12 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/player.tscn" id="1_ypxwc"]
@@ -34,6 +34,40 @@ size = Vector3(20, 2, 20)
 height = 10.0
 radius = 5.25
 
+[sub_resource type="GDScript" id="GDScript_ouwj3"]
+resource_name = "reach_area"
+script/source = "extends Area3D
+
+@onready var pawn : Pawn = get_parent()
+
+var selection : Node3D
+var selections : Array[Node3D]
+
+func _when_body_entered(body: Node3D) -> void:
+	if pawn.behavior.grabber.grabbed_body != null: return
+	if body == pawn: return
+	selections.push_back(body)
+	selection = get_selection()
+	
+	if body is Pawn:
+		body.behavior.entered_selection.emit(pawn)
+
+
+func _when_body_exited(body: Node3D) -> void:
+	if pawn.behavior.grabber.grabbed_body != null: return
+	if body == pawn: return
+	selections.erase(body)
+	selection = get_selection()
+	
+	if body is Pawn:
+		body.behavior.exited_selection.emit(pawn)
+	
+	
+func get_selection() -> Node3D:
+	return selections[0] if selections else null
+	
+"
+
 [node name="world" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -68,11 +102,15 @@ shape = SubResource("CylinderShape3D_gc7y0")
 
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
 
-[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="3" node_paths=PackedStringArray("home_area")]
+[node name="reach_area" parent="navigation_region_3d/home/pawn_baby" index="2"]
+collision_layer = 1
+collision_mask = 1
+script = SubResource("GDScript_ouwj3")
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="4" node_paths=PackedStringArray("home_area")]
 home_area = NodePath("../../area")
 
 [node name="player" parent="." instance=ExtResource("1_ypxwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="node_3d" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 0)

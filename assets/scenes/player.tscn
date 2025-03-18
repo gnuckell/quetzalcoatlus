@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
 [ext_resource type="Texture2D" uid="uid://cdniwa5lp2wa2" path="res://assets/sprites/player test2.png" id="2_s027a"]
+[ext_resource type="Script" uid="uid://cyv7j6k7lrsao" path="res://assets/scripts/player/reach_area_player.gd" id="3_4wcc8"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="3_14505"]
+[ext_resource type="Script" uid="uid://by1ljqqv58u1q" path="res://assets/scripts/player/behavior_player.gd" id="5_8sknh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
 animations = [{
@@ -15,104 +17,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_s027a"]
-resource_name = "peck_area"
-script/source = "extends Area3D
-
-@onready var selection_marker : Node3D = $shape/selection_marker
-@onready var pawn : Pawn = get_parent()
-
-var selection : Node3D
-var selections : Array[Node3D]
-
-func _ready() -> void:
-	refresh_selection_marker()
-	
-
-func _physics_process(delta: float) -> void:
-	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
-	if input.is_zero_approx(): return
-	input = input.normalized()
-	self.rotation = Vector3.UP * atan2(-input.y, input.x)
-	
-
-func _when_body_entered(body: Node3D) -> void:
-	if pawn.behavior.grabber.grabbed_body != null: return
-	if body == pawn: return
-	selections.push_back(body)
-	refresh_selection_marker()
-	
-	if body is not Pawn: return
-	
-	body.behavior._when_entered_selection(pawn)
-
-
-func _when_body_exited(body: Node3D) -> void:
-	if pawn.behavior.grabber.grabbed_body != null: return
-	if body == pawn: return
-	selections.erase(body)
-	refresh_selection_marker()
-	
-	if body is not Pawn: return
-	
-	body.behavior._when_exited_selection(pawn)
-	
-	
-func refresh_selection_marker() -> void:
-	var new_selection : Node3D = get_highest_priority_selection()
-	if selection == new_selection: return
-	selection = new_selection
-	
-	selection_marker.visible = selection != null
-	selection_marker.get_parent().remove_child(selection_marker)
-	(selection if selection != null else $shape).add_child(selection_marker)
-	
-
-func get_highest_priority_selection() -> Node3D:
-	return selections[0] if selections else null
-
-
-func peck() -> void:
-	if pawn.behavior.grabber.grabbed_body == null:
-		if selection == null: return
-		
-		if selection is Pawn:
-			var temp = selection
-			_when_body_exited(selection)
-			pawn.behavior.grabber.grabbed_body = temp
-	else:
-		pawn.behavior.grabber.grabbed_body = null
-"
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s027a"]
 radius = 1.5
-
-[sub_resource type="GDScript" id="GDScript_rwm0n"]
-resource_name = "behavior_player"
-script/source = "extends Behavior
-
-signal pecked
-
-func _ready() -> void:
-	super._ready()
-	Pawn.PLAYER = self.pawn
-
-
-func _physics_process_unstunned(delta: float) -> void:
-	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
-	pawn.walk_vector = Vector3(input.x, 0.0, input.y)
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&\"interact\"):
-		interact()
-
-
-func interact() -> void:
-	if is_stunned: return
-	pecked.emit()
-	
-"
 
 [node name="player" instance=ExtResource("1_rwm0n")]
 walk_accel = 0.8
@@ -126,32 +32,28 @@ sprite_frames = SubResource("SpriteFrames_14505")
 visible = false
 text = "PLAYER"
 
-[node name="peck_area" type="Area3D" parent="." index="3"]
-collision_layer = 16
-collision_mask = 4
-script = SubResource("GDScript_s027a")
+[node name="reach_area" parent="." index="2"]
+script = ExtResource("3_4wcc8")
 
-[node name="shape" type="CollisionShape3D" parent="peck_area" index="0"]
+[node name="shape" parent="reach_area" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 shape = SubResource("CylinderShape3D_s027a")
 
-[node name="selection_marker" type="Node3D" parent="peck_area/shape" index="0"]
+[node name="selection_marker" type="Node3D" parent="reach_area/shape" index="0"]
 
-[node name="placeholder" parent="peck_area/shape/selection_marker" index="0" instance=ExtResource("3_14505")]
+[node name="placeholder" parent="reach_area/shape/selection_marker" index="0" instance=ExtResource("3_14505")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
 text = "SELECTION"
 
-[node name="grabber" parent="." index="4"]
+[node name="grabber" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12112, 2.34317, 0)
 
-[node name="behavior" parent="." index="5"]
-script = SubResource("GDScript_rwm0n")
+[node name="behavior" parent="." index="4"]
+script = ExtResource("5_8sknh")
 wander_distance_range = null
 wander_time_range = null
 
 [node name="nav_timer" parent="behavior" index="0"]
 process_mode = 4
 
-[connection signal="body_entered" from="peck_area" to="peck_area" method="_when_body_entered"]
-[connection signal="body_exited" from="peck_area" to="peck_area" method="_when_body_exited"]
-[connection signal="pecked" from="behavior" to="peck_area" method="peck"]
+[connection signal="pecked" from="behavior" to="reach_area" method="peck"]

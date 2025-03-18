@@ -1,3 +1,4 @@
+
 # Godot 4+ specific ignores
 .godot/
 /android/
@@ -5,3 +6,4 @@
 *.kra~
 *.png~
 *.kra-autosave.kra
+*.tmp

@@ -2,71 +2,13 @@
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
+[ext_resource type="Script" uid="uid://doj4vyigvl0ai" path="res://assets/scripts/reach_area.gd" id="3_ouwj3"]
 [ext_resource type="Script" uid="uid://cb0ybvp7mt17e" path="res://assets/scripts/behavior.gd" id="3_thq2t"]
+[ext_resource type="Script" uid="uid://bq6ujp8rovsjg" path="res://assets/scripts/grabber.gd" id="4_6lxlu"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="4_xig1i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
-
-[sub_resource type="GDScript" id="GDScript_ouwj3"]
-resource_name = "reach_area"
-script/source = "extends Area3D
-
-@onready var pawn : Pawn = get_parent()
-
-var selection : Node3D
-var selections : Array[Node3D]
-
-func _when_body_entered(body: Node3D) -> void:
-	if pawn.behavior.grabber.grabbed_body != null: return
-	if body == pawn: return
-	selections.push_back(body)
-	selection = get_selection()
-	
-	if body is Pawn:
-		body.behavior.entered_selection.emit(pawn)
-
-
-func _when_body_exited(body: Node3D) -> void:
-	if pawn.behavior.grabber.grabbed_body != null: return
-	if body == pawn: return
-	selections.erase(body)
-	selection = get_selection()
-	
-	if body is Pawn:
-		body.behavior.exited_selection.emit(pawn)
-	
-	
-func get_selection() -> Node3D:
-	return selections[0] if selections else null
-	
-"
-
-[sub_resource type="GDScript" id="GDScript_xig1i"]
-resource_name = "grabber"
-script/source = "extends Generic6DOFJoint3D
-
-var _grabbed_body : PhysicsBody3D
-var grabbed_body : PhysicsBody3D :
-	get: return _grabbed_body
-	set(value):
-		if _grabbed_body == value: return
-
-		if _grabbed_body is Pawn:
-			var pos : Vector3 = _grabbed_body.global_position
-			self.remove_child(_grabbed_body)
-			self.get_tree().root.add_child(_grabbed_body)
-			_grabbed_body.global_position = pos
-			_grabbed_body.is_phased = false
-
-		_grabbed_body = value
-		
-		if _grabbed_body is Pawn:
-			_grabbed_body.get_parent().remove_child(_grabbed_body)
-			self.add_child(_grabbed_body)
-			_grabbed_body.position = Vector3.ZERO
-			_grabbed_body.is_phased = true
-"
 
 [sub_resource type="Resource" id="Resource_ouwj3"]
 script = ExtResource("4_xig1i")
@@ -116,14 +58,16 @@ shape = SubResource("BoxShape3D_st1bq")
 shape = SubResource("BoxShape3D_st1bq")
 
 [node name="reach_area" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 4
 monitorable = false
-script = SubResource("GDScript_ouwj3")
+script = ExtResource("3_ouwj3")
 
 [node name="shape" type="CollisionShape3D" parent="reach_area"]
 
 [node name="grabber" type="Generic6DOFJoint3D" parent="."]
 node_a = NodePath("..")
-script = SubResource("GDScript_xig1i")
+script = ExtResource("4_6lxlu")
 
 [node name="behavior" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5

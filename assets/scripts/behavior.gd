@@ -65,7 +65,7 @@ func _when_exited_home_area(body: Node3D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_stunned: return
+	if is_stunned or pawn.is_phased: return
 	_physics_process_unstunned(delta)
 func _physics_process_unstunned(delta: float) -> void: pass
 
