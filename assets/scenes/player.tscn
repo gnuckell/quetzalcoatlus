@@ -16,6 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="GDScript" id="GDScript_s027a"]
+resource_name = "peck_area"
 script/source = "extends Area3D
 
 @onready var selection_marker : Node3D = $shape/selection_marker
@@ -87,9 +88,15 @@ func peck() -> void:
 radius = 1.5
 
 [sub_resource type="GDScript" id="GDScript_rwm0n"]
+resource_name = "behavior_player"
 script/source = "extends Behavior
 
 signal pecked
+
+func _ready() -> void:
+	super._ready()
+	Pawn.PLAYER = self.pawn
+
 
 func _physics_process_unstunned(delta: float) -> void:
 	var input : Vector2 = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
@@ -119,9 +126,6 @@ sprite_frames = SubResource("SpriteFrames_14505")
 visible = false
 text = "PLAYER"
 
-[node name="grabber" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12112, 2.34317, 0)
-
 [node name="peck_area" type="Area3D" parent="." index="3"]
 collision_layer = 16
 collision_mask = 4
@@ -137,7 +141,10 @@ shape = SubResource("CylinderShape3D_s027a")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
 text = "SELECTION"
 
-[node name="behavior" parent="." index="4"]
+[node name="grabber" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12112, 2.34317, 0)
+
+[node name="behavior" parent="." index="5"]
 script = SubResource("GDScript_rwm0n")
 wander_distance_range = null
 wander_time_range = null

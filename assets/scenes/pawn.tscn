@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ir7jko68gpr2"]
+[gd_scene load_steps=10 format=3 uid="uid://ir7jko68gpr2"]
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
@@ -7,6 +7,40 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_ouwj3"]
+resource_name = "reach_area"
+script/source = "extends Area3D
+
+@onready var pawn : Pawn = get_parent()
+
+var selection : Node3D
+var selections : Array[Node3D]
+
+func _when_body_entered(body: Node3D) -> void:
+	if pawn.behavior.grabber.grabbed_body != null: return
+	if body == pawn: return
+	selections.push_back(body)
+	selection = get_selection()
+	
+	if body is Pawn:
+		body.behavior.entered_selection.emit(pawn)
+
+
+func _when_body_exited(body: Node3D) -> void:
+	if pawn.behavior.grabber.grabbed_body != null: return
+	if body == pawn: return
+	selections.erase(body)
+	selection = get_selection()
+	
+	if body is Pawn:
+		body.behavior.exited_selection.emit(pawn)
+	
+	
+func get_selection() -> Node3D:
+	return selections[0] if selections else null
+	
+"
 
 [sub_resource type="GDScript" id="GDScript_xig1i"]
 resource_name = "grabber"
@@ -81,6 +115,12 @@ shape = SubResource("BoxShape3D_st1bq")
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
 
+[node name="reach_area" type="Area3D" parent="."]
+monitorable = false
+script = SubResource("GDScript_ouwj3")
+
+[node name="shape" type="CollisionShape3D" parent="reach_area"]
+
 [node name="grabber" type="Generic6DOFJoint3D" parent="."]
 node_a = NodePath("..")
 script = SubResource("GDScript_xig1i")
@@ -102,5 +142,9 @@ autostart = true
 process_callback = 0
 autostart = true
 
+[connection signal="body_entered" from="reach_area" to="reach_area" method="_when_body_entered"]
+[connection signal="body_exited" from="reach_area" to="reach_area" method="_when_body_exited"]
+[connection signal="entered_selection" from="behavior" to="behavior" method="_when_entered_selection"]
+[connection signal="exited_selection" from="behavior" to="behavior" method="_when_exited_selection"]
 [connection signal="target_reached" from="behavior" to="behavior" method="_when_target_reached"]
 [connection signal="timeout" from="behavior/wander_timer" to="behavior" method="wander"]
