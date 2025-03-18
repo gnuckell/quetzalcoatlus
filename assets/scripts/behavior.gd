@@ -3,6 +3,8 @@ class_name Behavior extends NavigationAgent3D
 const TARGET_POSITION_MAX_ATTEMPTS : int = 8
 
 signal state_changed(value: int)
+signal entered_selection(other: Pawn)
+signal exited_selection(other: Pawn)
 
 @export var home_area : Area3D
 
@@ -10,6 +12,10 @@ signal state_changed(value: int)
 @export var wander_distance_range : FloatRange
 @export var wander_time_range : FloatRange
 @export var home_radius : float = 5.0
+
+var entered_selections : Array[Pawn]
+var is_selected : bool :
+	get: return not entered_selections.is_empty()
 
 var _target_node : Node3D
 var target_node : Node3D :
@@ -131,9 +137,11 @@ func _when_target_reached() -> void:
 	
 
 func _when_entered_selection(other: Pawn) -> void:
-	pass
+	if pawn == other or entered_selections.has(other): return
+	entered_selections.push_back(other)
 	
 
 func _when_exited_selection(other: Pawn) -> void:
-	pass
+	if pawn == other or not entered_selections.has(other): return
+	entered_selections.erase(other)
 	
