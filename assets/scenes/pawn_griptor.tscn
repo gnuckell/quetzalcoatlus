@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://6tpv2x0jktb4"]
+
+[ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_vpcnp"]
+
+[sub_resource type="GDScript" id="GDScript_vpcnp"]
+resource_name = "behavior_griptor"
+script/source = "extends Behavior
+"
+
+[node name="pawn_griptor" instance=ExtResource("1_vpcnp")]
+
+[node name="behavior" parent="." index="3"]
+script = SubResource("GDScript_vpcnp")
+wander_distance_range = null
+wander_time_range = null
