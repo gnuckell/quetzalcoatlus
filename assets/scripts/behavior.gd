@@ -23,7 +23,7 @@ var target_node : Node3D :
 	set(value):
 		if _target_node == value: return
 		_target_node = value
-		
+
 		if _target_node:
 			$nav_timer.timeout.connect(update_target_position)
 		else:
@@ -50,7 +50,7 @@ func _ready() -> void:
 	if home_area:
 		home_area.body_entered.connect(_when_entered_home_area)
 		home_area.body_exited.connect(_when_exited_home_area)
-		
+
 
 
 func _when_state_changed(value: int) -> void: pass
@@ -74,26 +74,22 @@ func physics_process_walk_to_target(delta: float) -> void:
 	pawn.walk_vector = get_walk_direction()
 
 func wander():
-	if wander_time_range == null: return
-	
 	self.target_node = null
 	self.target_position = _get_wander_position()
-	
+
 	$wander_timer.wait_time = wander_time_range.get_random_value()
 	$wander_timer.start()
-	
-	
+
+
 func get_walk_direction() -> Vector3:
 	return (self.get_next_path_position() - pawn.global_position).normalized() * Vector3(1, 0, 1)
 
 
 func _get_wander_position() -> Vector3:
 	return get_random_nearby_position()
-	
+
 
 func get_random_nearby_position() -> Vector3:
-	if wander_distance_range == null: return self.pawn.global_position
-	
 	var result : Vector3
 	var map := self.pawn.get_world_3d().navigation_map
 
@@ -106,18 +102,16 @@ func get_random_nearby_position() -> Vector3:
 
 
 func get_random_home_position() -> Vector3:
-	if wander_distance_range == null: return self.pawn.global_position
-	
 	var result : Vector3
 	var map := self.pawn.get_world_3d().navigation_map
-	
-	for i in TARGET_POSITION_MAX_ATTEMPTS:
+
+	for i in 1000:
 		result = self.pawn.global_position + wander_distance_range.get_random_vector3()
 		var closest := NavigationServer3D.map_get_closest_point(map, result)
 		if is_position_inside_home(result): return closest
 	return get_random_nearby_position()
-	
-	
+
+
 func is_position_inside_home(pos: Vector3) -> bool:
 	var delta := home_area.global_position - pos
 	return delta.length() < home_radius
@@ -134,14 +128,14 @@ func update_target_position():
 func _when_target_reached() -> void:
 	#print("target reached!")
 	pass
-	
+
 
 func _when_entered_selection(other: Pawn) -> void:
 	if pawn == other or entered_selections.has(other): return
 	entered_selections.push_back(other)
-	
+
 
 func _when_exited_selection(other: Pawn) -> void:
 	if pawn == other or not entered_selections.has(other): return
 	entered_selections.erase(other)
-	
+

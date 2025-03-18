@@ -14,14 +14,12 @@ size = Vector3(1, 1, 0.5)
 script = ExtResource("4_xig1i")
 minimum = 10.0
 maximum = 20.0
-allow_negatives_in_random = true
 metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [sub_resource type="Resource" id="Resource_6lxlu"]
 script = ExtResource("4_xig1i")
 minimum = 2.0
 maximum = 2.0
-allow_negatives_in_random = false
 metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [node name="pawn" type="CharacterBody3D" node_paths=PackedStringArray("behavior")]

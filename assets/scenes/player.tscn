@@ -56,4 +56,7 @@ wander_time_range = null
 [node name="nav_timer" parent="behavior" index="0"]
 process_mode = 4
 
+[node name="wander_timer" parent="behavior" index="1"]
+autostart = false
+
 [connection signal="pecked" from="behavior" to="reach_area" method="peck"]

@@ -59,16 +59,3 @@ func _when_exited_selection(other: Pawn) -> void:
 	super._when_exited_selection(other)
 	if not entered_selections.has(Pawn.PLAYER):
 		is_mouth_open = false
-
-#if "hungry": start crying
-#elif "in danger" (starving or being eaten): start screaming and display notification
-#else (safe): stop making sounds
-#
-#if "selected to be fed": Stand still.
-	#if "completely fed": do nothing or shake head to indicate not hungry. (low priority selection)
-	#else: Open mouth wide
-#else:
-	#if old enough to walk: Wander around aimlessly.
-		#if inside nest: choose a location to never leave nest.
-		#else: choose a random location.
-

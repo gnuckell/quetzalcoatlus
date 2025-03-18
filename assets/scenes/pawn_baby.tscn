@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=6 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
 [ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
+[ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="3_w2hqq"]
+
+[sub_resource type="Resource" id="Resource_0hxpa"]
+script = ExtResource("3_w2hqq")
+minimum = 2.0
+maximum = 4.0
+metadata/_custom_type_script = "uid://bfm2m5jgefara"
+
+[sub_resource type="Resource" id="Resource_gaxio"]
+script = ExtResource("3_w2hqq")
+minimum = 8.0
+maximum = 12.0
+metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [node name="pawn_baby" instance=ExtResource("1_yhtjp")]
 walk_accel = 0.1
@@ -12,5 +25,5 @@ text = "BABY"
 
 [node name="behavior" parent="." index="4"]
 script = ExtResource("2_v5ewb")
-wander_distance_range = null
-wander_time_range = null
+wander_distance_range = SubResource("Resource_0hxpa")
+wander_time_range = SubResource("Resource_gaxio")
