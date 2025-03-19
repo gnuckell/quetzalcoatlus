@@ -121,9 +121,6 @@ script = SubResource("GDScript_ouwj3")
 [node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="3" node_paths=PackedStringArray("home_area")]
 home_area = NodePath("../../area")
 
-[node name="pawn_griptor" parent="navigation_region_3d/home/pawn_baby" instance=ExtResource("3_0moxn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.244751, 0.27, -3.95544)
-
 [node name="player" parent="." instance=ExtResource("1_ypxwc")]
 
 [node name="remote_transform_3d" type="RemoteTransform3D" parent="player"]
@@ -136,11 +133,14 @@ update_scale = false
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2, 0)
 
 [node name="camera_3d" type="Camera3D" parent="node_3d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 projection = 1
 current = true
 fov = 1.0
 size = 10.0
+
+[node name="pawn_griptor" parent="." instance=ExtResource("3_0moxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.244751, 0.27, -3.95544)
 
 [editable path="navigation_region_3d/home/model"]
 [editable path="navigation_region_3d/home/pawn_baby"]
