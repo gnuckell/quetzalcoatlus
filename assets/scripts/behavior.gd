@@ -6,6 +6,7 @@ signal state_changed(value: int)
 signal entered_selection(other: Pawn)
 signal exited_selection(other: Pawn)
 
+@export var grabber : Node3D
 @export var home_area : Area3D
 
 @export_category("Wander")
@@ -43,7 +44,6 @@ var state : int :
 
 
 @onready var pawn : Pawn = self.get_parent()
-@onready var grabber : Generic6DOFJoint3D = self.get_parent().find_child("grabber")
 
 
 func _ready() -> void:

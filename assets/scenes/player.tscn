@@ -21,6 +21,7 @@ animations = [{
 radius = 1.5
 
 [node name="player" instance=ExtResource("1_rwm0n")]
+species = &"player"
 walk_accel = 0.8
 walk_damping = 0.175
 
@@ -31,6 +32,9 @@ sprite_frames = SubResource("SpriteFrames_14505")
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
 text = "PLAYER"
+
+[node name="grabber" parent="sprite" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
 
 [node name="reach_area" parent="." index="2"]
 script = ExtResource("3_4wcc8")
@@ -45,10 +49,7 @@ shape = SubResource("CylinderShape3D_s027a")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
 text = "SELECTION"
 
-[node name="grabber" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12112, 2.34317, 0)
-
-[node name="behavior" parent="." index="4"]
+[node name="behavior" parent="." index="3"]
 script = ExtResource("5_8sknh")
 wander_distance_range = null
 wander_time_range = null

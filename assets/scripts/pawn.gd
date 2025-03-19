@@ -2,6 +2,7 @@ class_name Pawn extends CharacterBody3D
 
 static var PLAYER : Pawn
 
+@export var species : StringName
 @export var behavior : Behavior
 @export_range(0.0, 1.0, 0.1, "or_greater") var walk_accel : float = 0.5
 @export_range(0.0, 1.0) var walk_damping : float = 0.1

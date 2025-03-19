@@ -17,13 +17,14 @@ maximum = 12.0
 metadata/_custom_type_script = "uid://bfm2m5jgefara"
 
 [node name="pawn_baby" instance=ExtResource("1_yhtjp")]
+species = &"baby"
 walk_accel = 0.1
 walk_damping = 0.05
 
 [node name="placeholder" parent="sprite" index="0"]
 text = "BABY"
 
-[node name="behavior" parent="." index="4"]
+[node name="behavior" parent="." index="3"]
 script = ExtResource("2_v5ewb")
 wander_distance_range = SubResource("Resource_0hxpa")
 wander_time_range = SubResource("Resource_gaxio")

@@ -22,7 +22,7 @@ var is_mouth_open : bool :
 		_is_mouth_open = value
 
 		if _is_mouth_open:
-			pawn.velocity = Vector3.ZERO
+			pawn.velocity_flat = Vector3.ZERO
 			pawn.walk_vector = Vector3.ZERO
 
 		if state == IDLING:
