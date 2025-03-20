@@ -37,3 +37,10 @@ func peck() -> void:
 	else:
 		pawn.behavior.grabber.grabbed_body = null
 
+
+func is_valid_selection(body: Node3D) -> bool:
+	if body is Pawn:
+		match body.species:
+			&"baby", &"marmot": return true
+			_: return false
+	return super.is_valid_selection(body)

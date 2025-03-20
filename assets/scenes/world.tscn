@@ -140,7 +140,7 @@ fov = 1.0
 size = 10.0
 
 [node name="pawn_griptor" parent="." instance=ExtResource("3_0moxn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.244751, 0.27, -3.95544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24475, 0.27, -9.95544)
 
 [editable path="navigation_region_3d/home/model"]
 [editable path="navigation_region_3d/home/pawn_baby"]

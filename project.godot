@@ -38,11 +38,16 @@ naming/script_name_casing=2
 
 folder_colors={
 "res://addons/": "gray",
+"res://assets/audio/": "red",
 "res://assets/models/": "yellow",
 "res://assets/scenes/": "green",
 "res://assets/scripts/": "blue",
 "res://assets/sprites/": "purple"
 }
+
+[global_group]
+
+babies=""
 
 [input]
 

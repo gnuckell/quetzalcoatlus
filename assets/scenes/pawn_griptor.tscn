@@ -54,6 +54,7 @@ animations = [{
 species = &"griptor"
 
 [node name="sprite" parent="." index="0"]
+sorting_offset = -0.5
 offset = Vector2(200, 385)
 sprite_frames = SubResource("SpriteFrames_vmbop")
 animation = &"run_fleeing"
@@ -64,6 +65,7 @@ visible = false
 text = "GRIPTOR"
 
 [node name="hand_1" type="Sprite3D" parent="sprite" index="3"]
+sorting_offset = -1.0
 offset = Vector2(200, 385)
 billboard = 1
 alpha_cut = 1
