@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://sok21tnrc1og"]
+
+[ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_0h8b5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ha44"]
+
+[node name="griptor_hole" type="Area3D"]
+
+[node name="shape" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_7ha44")
+
+[node name="placeholder" parent="." instance=ExtResource("1_0h8b5")]
+text = "HOLE"

@@ -25,7 +25,7 @@ var target_node : Node3D :
 		if _target_node == value: return
 		_target_node = value
 
-		if _target_node:
+		if _target_node != null:
 			$nav_timer.timeout.connect(update_target_position)
 		else:
 			$nav_timer.timeout.disconnect(update_target_position)
@@ -34,6 +34,8 @@ var is_inside_home : bool :
 	get: return home_radius != null and is_position_inside_home(pawn.global_position)
 var is_stunned : bool
 
+var can_attack : bool = true
+
 var _state : int
 var state : int :
 	get: return _state
@@ -41,6 +43,7 @@ var state : int :
 		if _state == value: return
 		_state = value
 		state_changed.emit(_state)
+		_when_state_changed(_state)
 
 
 @onready var pawn : Pawn = self.get_parent()
@@ -50,7 +53,6 @@ func _ready() -> void:
 	if home_area:
 		home_area.body_entered.connect(_when_entered_home_area)
 		home_area.body_exited.connect(_when_exited_home_area)
-
 
 
 func _when_state_changed(value: int) -> void: pass
@@ -115,6 +117,12 @@ func get_random_home_position() -> Vector3:
 func is_position_inside_home(pos: Vector3) -> bool:
 	var delta := home_area.global_position - pos
 	return delta.length() < home_radius
+
+
+func attack() -> void:
+	can_attack = false
+	_attack()
+func _attack() -> void: pass
 
 
 func wait(delay : float) :

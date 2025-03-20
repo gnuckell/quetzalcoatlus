@@ -10,6 +10,9 @@ enum {
 
 func _ready() -> void:
 	super._ready()
+
+
+func _attack() -> void:
 	state = HUNTING
 
 
@@ -21,7 +24,11 @@ func _when_state_changed(value: int) -> void:
 	if state == WANDERING: wander()
 	else: $wander_timer.stop()
 
+	print("State changed to %s" % state)
+
 	match state:
+		WANDERING:
+			self.can_attack = true
 		HUNTING:
 			self.target_node = get_target_baby()
 			if self.target_node == null: wander()
@@ -31,15 +38,15 @@ func _when_state_changed(value: int) -> void:
 
 
 func _when_target_reached() -> void:
-	pass
 	match state:
 		HUNTING:
 			grabber.grabbed_body = self.target_node
 			state = ESCAPING
 		ESCAPING:
-			grabber.grabbed_body.queue_free()
-			grabber.grabbed_body = null
-		pass
+			if grabber.grabbed_body != null:
+				grabber.grabbed_body.queue_free()
+				grabber.grabbed_body = null
+				state = WANDERING
 
 
 func get_target_baby() -> Pawn:

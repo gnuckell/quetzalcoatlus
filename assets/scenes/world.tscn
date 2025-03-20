@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddr2477jk1xyg"]
+[gd_scene load_steps=15 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/player.tscn" id="1_ypxwc"]
 [ext_resource type="PackedScene" uid="uid://d3q1efqvmoxic" path="res://assets/scenes/pawn_baby.tscn" id="2_gc7y0"]
-[ext_resource type="PackedScene" uid="uid://6tpv2x0jktb4" path="res://assets/scenes/pawn_griptor.tscn" id="3_0moxn"]
+[ext_resource type="PackedScene" uid="uid://c8kcvgjhtxjqw" path="res://assets/scenes/griptor_with_hole.tscn" id="4_0moxn"]
+[ext_resource type="Script" uid="uid://dfuipeitwehbj" path="res://assets/scripts/enemy_controller.gd" id="5_vu0c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ypxwc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -103,6 +104,11 @@ shape = SubResource("BoxShape3D_0moxn")
 
 [node name="model" parent="navigation_region_3d/home" instance=ExtResource("1_betll")]
 
+[node name="StaticBody3D" parent="navigation_region_3d/home/model/home_nest" index="0"]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
 [node name="area" type="Area3D" parent="navigation_region_3d/home"]
 
 [node name="shape" type="CollisionShape3D" parent="navigation_region_3d/home/area"]
@@ -139,8 +145,19 @@ current = true
 fov = 1.0
 size = 10.0
 
-[node name="pawn_griptor" parent="." instance=ExtResource("3_0moxn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24475, 0.27, -9.95544)
+[node name="griptor_with_hole" parent="." instance=ExtResource("4_0moxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, -7)
+
+[node name="griptor_with_hole_2" parent="." instance=ExtResource("4_0moxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5, -7)
+
+[node name="enemy_controller" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+autostart = true
+script = ExtResource("5_vu0c7")
+
+[connection signal="timeout" from="enemy_controller" to="enemy_controller" method="_when_timeout"]
 
 [editable path="navigation_region_3d/home/model"]
 [editable path="navigation_region_3d/home/pawn_baby"]

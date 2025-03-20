@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8kcvgjhtxjqw"]
+
+[ext_resource type="PackedScene" uid="uid://sok21tnrc1og" path="res://assets/scenes/griptor_hole.tscn" id="1_bosoo"]
+[ext_resource type="PackedScene" uid="uid://6tpv2x0jktb4" path="res://assets/scenes/pawn_griptor.tscn" id="2_sns47"]
+
+[node name="griptor_with_hole" type="Node3D"]
+
+[node name="griptor_hole" parent="." instance=ExtResource("1_bosoo")]
+
+[node name="pawn_griptor" parent="." instance=ExtResource("2_sns47")]
+
+[node name="behavior" parent="pawn_griptor" index="3" node_paths=PackedStringArray("home_area")]
+home_area = NodePath("../../griptor_hole")
+
+[editable path="pawn_griptor"]

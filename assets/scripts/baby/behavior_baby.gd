@@ -7,10 +7,10 @@ enum {
 
 const STARVING_WARNING_TIME_REMAINING : float = 30.0
 
-signal when_hungry
-signal when_starving
-signal when_starved
-signal when_fed
+signal hungry
+signal starving
+signal starved
+signal fed
 
 var food_eaten : int
 var hunger_time_remaining : float = 60.0
@@ -59,3 +59,7 @@ func _when_exited_selection(other: Pawn) -> void:
 	super._when_exited_selection(other)
 	if not entered_selections.has(Pawn.PLAYER):
 		is_mouth_open = false
+
+
+func _when_fed() -> void:
+	EnemyController.inst.kickstart()
