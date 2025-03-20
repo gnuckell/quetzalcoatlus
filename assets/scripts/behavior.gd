@@ -134,7 +134,6 @@ func update_target_position():
 
 
 func _when_target_reached() -> void:
-	#print("target reached!")
 	pass
 
 
