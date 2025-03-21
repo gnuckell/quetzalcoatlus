@@ -130,12 +130,18 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_gaxio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gaxio")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_71h5b")
+}, {
 "duration": 1.0,
 "texture": ExtResource("10_71h5b")
 }],
@@ -210,7 +216,7 @@ walk_damping = 0.05
 offset = Vector2(275, 400)
 sprite_frames = SubResource("SpriteFrames_fc0gq")
 animation = &"idle"
-frame_progress = 0.332496
+frame_progress = 0.973792
 script = ExtResource("2_0hxpa")
 
 [node name="placeholder" parent="sprite" index="0"]

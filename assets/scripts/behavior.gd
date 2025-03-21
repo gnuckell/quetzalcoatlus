@@ -130,7 +130,10 @@ func wait(delay : float) :
 
 
 func update_target_position():
-	if target_node == null: return
+	if target_node == null:
+		$nav_timer.timeout.disconnect(update_target_position)
+		wander()
+		return
 	self.target_position = target_node.global_position
 
 
