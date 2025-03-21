@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://oysvmriieki3"]
+[gd_scene load_steps=7 format=3 uid="uid://bmfxo8pjam4ve"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_mew20"]
 [ext_resource type="Texture2D" uid="uid://b5mrkti5aslh3" path="res://assets/sprites/marmot running lineart1.png" id="2_ga0rq"]

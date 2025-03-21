@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6tpv2x0jktb4"]
+[gd_scene load_steps=13 format=3 uid="uid://6tpv2x0jktb4"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_vpcnp"]
 [ext_resource type="Script" uid="uid://buut70qa10xom" path="res://assets/scripts/griptor/behavior_griptor.gd" id="2_3q6rm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://p5i5jb41mat6" path="res://assets/sprites/griptor rough3.png" id="4_mcdjd"]
 [ext_resource type="Texture2D" uid="uid://li0nsfnw4fw7" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough4.png" id="5_ojqxp"]
 [ext_resource type="Texture2D" uid="uid://dnvg2qd5ndykn" path="res://assets/sprites/griptor rough4.png" id="5_r2snc"]
+[ext_resource type="Script" uid="uid://ci2imbuusxx4x" path="res://assets/scripts/griptor/sprite_griptor.gd" id="10_p75sy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vmbop"]
 animations = [{
@@ -62,11 +63,10 @@ walk_accel = 0.65
 walk_damping = 0.175
 
 [node name="sprite" parent="." index="0"]
-sorting_offset = -0.5
 offset = Vector2(200, 385)
 sprite_frames = SubResource("SpriteFrames_vmbop")
-animation = &"run_normal"
-frame_progress = 0.642089
+animation = &"run_fleeing"
+script = ExtResource("10_p75sy")
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
@@ -74,5 +74,3 @@ text = "GRIPTOR"
 
 [node name="behavior" parent="." index="3" groups=["enemies"]]
 script = ExtResource("2_3q6rm")
-
-[connection signal="state_changed" from="behavior" to="sprite/placeholder" method="set_text"]

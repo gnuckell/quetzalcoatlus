@@ -87,9 +87,11 @@ autostart = true
 process_callback = 0
 autostart = true
 
+[connection signal="animation_finished" from="sprite" to="sprite" method="_when_animation_finished"]
 [connection signal="body_entered" from="reach_area" to="reach_area" method="_when_body_entered"]
 [connection signal="body_exited" from="reach_area" to="reach_area" method="_when_body_exited"]
 [connection signal="entered_selection" from="behavior" to="behavior" method="_when_entered_selection"]
 [connection signal="exited_selection" from="behavior" to="behavior" method="_when_exited_selection"]
+[connection signal="state_changed" from="behavior" to="sprite" method="_when_behavior_state_changed"]
 [connection signal="target_reached" from="behavior" to="behavior" method="_when_target_reached"]
 [connection signal="timeout" from="behavior/wander_timer" to="behavior" method="wander"]

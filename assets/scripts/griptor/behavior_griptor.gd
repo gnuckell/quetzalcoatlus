@@ -40,6 +40,7 @@ func _when_state_changed(value: int) -> void:
 func _when_target_reached() -> void:
 	match state:
 		HUNTING:
+			if self.target_node == null: return
 			grabber.grabbed_body = self.target_node
 			state = ESCAPING
 		ESCAPING:
