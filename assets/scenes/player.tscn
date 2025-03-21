@@ -62,9 +62,7 @@ walk_damping = 0.175
 [node name="sprite" parent="." index="0"]
 offset = Vector2(180, 350)
 sprite_frames = SubResource("SpriteFrames_14505")
-animation = &"peck"
-frame = 1
-frame_progress = 1.0
+animation = &"idle"
 script = ExtResource("9_c6vv5")
 
 [node name="placeholder" parent="sprite" index="0"]

@@ -2,7 +2,8 @@ extends Behavior
 
 enum {
 	IDLING,
-	CAPTURED,
+	HUNGRY,
+	DANGER,
 }
 
 const STARVING_WARNING_TIME_REMAINING : float = 30.0

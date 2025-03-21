@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var pawn : Pawn = get_parent().get_parent()
+
 var _grabbed_body : PhysicsBody3D
 var grabbed_body : PhysicsBody3D :
 	get: return _grabbed_body
@@ -10,6 +12,7 @@ var grabbed_body : PhysicsBody3D :
 			var pos : Vector3 = _grabbed_body.global_position
 			self.remove_child(_grabbed_body)
 			self.get_tree().root.add_child(_grabbed_body)
+			_grabbed_body.grabber = null
 			_grabbed_body.global_position = pos
 			_grabbed_body.is_phased = false
 
@@ -18,5 +21,6 @@ var grabbed_body : PhysicsBody3D :
 		if _grabbed_body is Pawn:
 			_grabbed_body.get_parent().remove_child(_grabbed_body)
 			self.add_child(_grabbed_body)
+			_grabbed_body.grabber = pawn
 			_grabbed_body.position = Vector3.ZERO
 			_grabbed_body.is_phased = true

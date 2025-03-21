@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_vpcnp"]
 [ext_resource type="Script" uid="uid://buut70qa10xom" path="res://assets/scripts/griptor/behavior_griptor.gd" id="2_3q6rm"]
 [ext_resource type="Texture2D" uid="uid://dsbj3s2y83oj8" path="res://assets/sprites/griptor/griptor normal final2.png" id="2_p75sy"]
-[ext_resource type="Texture2D" uid="uid://wp461bbcryfu" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full1.png" id="3_uh4q8"]
-[ext_resource type="Texture2D" uid="uid://brr0n5x5ykmx2" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full2.png" id="4_2iwki"]
-[ext_resource type="Texture2D" uid="uid://ba24eej40k7sg" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full3.png" id="5_4ll0t"]
-[ext_resource type="Texture2D" uid="uid://dq27p1pppqb6p" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full4.png" id="6_ojqxp"]
+[ext_resource type="Texture2D" uid="uid://do2skoer40n0f" path="res://assets/sprites/griptor/griptor fleeing/griptor fleeing final1.png" id="3_p75sy"]
+[ext_resource type="Texture2D" uid="uid://dfp67mxj3brom" path="res://assets/sprites/griptor/griptor fleeing/griptor fleeing final2.png" id="4_uh4q8"]
+[ext_resource type="Texture2D" uid="uid://nb2k5h6hs586" path="res://assets/sprites/griptor/griptor fleeing/griptor fleeing final3.png" id="5_2iwki"]
+[ext_resource type="Texture2D" uid="uid://bv6gn0hbsjp4s" path="res://assets/sprites/griptor/griptor fleeing/griptor fleeing final4.png" id="6_4ll0t"]
 [ext_resource type="Texture2D" uid="uid://bb52ibun87sn1" path="res://assets/sprites/griptor/griptor normal final1.png" id="7_6h8u7"]
 [ext_resource type="Texture2D" uid="uid://bcnao7nxn6por" path="res://assets/sprites/griptor/griptor normal final3.png" id="8_bxelr"]
 [ext_resource type="Texture2D" uid="uid://b4weufe4ebpb0" path="res://assets/sprites/griptor/griptor normal final4.png" id="9_xrclo"]
@@ -24,16 +24,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_uh4q8")
+"texture": ExtResource("3_p75sy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_2iwki")
+"texture": ExtResource("4_uh4q8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_4ll0t")
+"texture": ExtResource("5_2iwki")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ojqxp")
+"texture": ExtResource("6_4ll0t")
 }],
 "loop": true,
 "name": &"run_fleeing",
@@ -66,7 +66,8 @@ walk_damping = 0.175
 offset = Vector2(200, 385)
 sprite_frames = SubResource("SpriteFrames_vmbop")
 animation = &"run_fleeing"
-frame_progress = 0.429317
+frame = 1
+frame_progress = 0.383046
 script = ExtResource("10_p75sy")
 
 [node name="placeholder" parent="sprite" index="0"]
