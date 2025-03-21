@@ -15,6 +15,9 @@ signal fed
 var food_eaten : int
 var hunger_time_remaining : float = 60.0
 
+var is_grown : bool :
+	get: return food_eaten > 1
+
 var _is_mouth_open : bool
 var is_mouth_open : bool :
 	get: return _is_mouth_open

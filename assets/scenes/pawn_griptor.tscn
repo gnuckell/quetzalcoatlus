@@ -2,21 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_vpcnp"]
 [ext_resource type="Script" uid="uid://buut70qa10xom" path="res://assets/scripts/griptor/behavior_griptor.gd" id="2_3q6rm"]
-[ext_resource type="Texture2D" uid="uid://d7bjm8k5r6uy" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough1.png" id="2_uh4q8"]
-[ext_resource type="Texture2D" uid="uid://bu0kt7gpa2phl" path="res://assets/sprites/griptor rough1.png" id="2_uj0wo"]
-[ext_resource type="Texture2D" uid="uid://cly6qwnkjnekt" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough2.png" id="3_2iwki"]
-[ext_resource type="Texture2D" uid="uid://cikq3jnkadxr5" path="res://assets/sprites/griptor rough2.png" id="3_q88t4"]
-[ext_resource type="Texture2D" uid="uid://b3por62fmriq8" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough3.png" id="4_4ll0t"]
-[ext_resource type="Texture2D" uid="uid://p5i5jb41mat6" path="res://assets/sprites/griptor rough3.png" id="4_mcdjd"]
-[ext_resource type="Texture2D" uid="uid://li0nsfnw4fw7" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough4.png" id="5_ojqxp"]
-[ext_resource type="Texture2D" uid="uid://dnvg2qd5ndykn" path="res://assets/sprites/griptor rough4.png" id="5_r2snc"]
+[ext_resource type="Texture2D" uid="uid://dsbj3s2y83oj8" path="res://assets/sprites/griptor/griptor normal final2.png" id="2_p75sy"]
+[ext_resource type="Texture2D" uid="uid://wp461bbcryfu" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full1.png" id="3_uh4q8"]
+[ext_resource type="Texture2D" uid="uid://brr0n5x5ykmx2" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full2.png" id="4_2iwki"]
+[ext_resource type="Texture2D" uid="uid://ba24eej40k7sg" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full3.png" id="5_4ll0t"]
+[ext_resource type="Texture2D" uid="uid://dq27p1pppqb6p" path="res://assets/sprites/griptor/griptor fleeing/full body griptor fleeing/griptor fleeing full4.png" id="6_ojqxp"]
+[ext_resource type="Texture2D" uid="uid://bb52ibun87sn1" path="res://assets/sprites/griptor/griptor normal final1.png" id="7_6h8u7"]
+[ext_resource type="Texture2D" uid="uid://bcnao7nxn6por" path="res://assets/sprites/griptor/griptor normal final3.png" id="8_bxelr"]
+[ext_resource type="Texture2D" uid="uid://b4weufe4ebpb0" path="res://assets/sprites/griptor/griptor normal final4.png" id="9_xrclo"]
 [ext_resource type="Script" uid="uid://ci2imbuusxx4x" path="res://assets/scripts/griptor/sprite_griptor.gd" id="10_p75sy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vmbop"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_q88t4")
+"texture": ExtResource("2_p75sy")
 }],
 "loop": true,
 "name": &"idle",
@@ -24,16 +24,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uh4q8")
+"texture": ExtResource("3_uh4q8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_2iwki")
+"texture": ExtResource("4_2iwki")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_4ll0t")
+"texture": ExtResource("5_4ll0t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ojqxp")
+"texture": ExtResource("6_ojqxp")
 }],
 "loop": true,
 "name": &"run_fleeing",
@@ -41,16 +41,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uj0wo")
+"texture": ExtResource("7_6h8u7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_q88t4")
+"texture": ExtResource("2_p75sy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mcdjd")
+"texture": ExtResource("8_bxelr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_r2snc")
+"texture": ExtResource("9_xrclo")
 }],
 "loop": true,
 "name": &"run_normal",
@@ -66,11 +66,15 @@ walk_damping = 0.175
 offset = Vector2(200, 385)
 sprite_frames = SubResource("SpriteFrames_vmbop")
 animation = &"run_fleeing"
+frame_progress = 0.429317
 script = ExtResource("10_p75sy")
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
 text = "GRIPTOR"
+
+[node name="grabber" parent="sprite" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65448, 1.75389, 0.102961)
 
 [node name="behavior" parent="." index="3" groups=["enemies"]]
 script = ExtResource("2_3q6rm")

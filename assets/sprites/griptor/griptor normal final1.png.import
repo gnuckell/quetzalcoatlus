@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cly6qwnkjnekt"
-path.s3tc="res://.godot/imported/griptor body fleeing rough2.png-97aace1e2121208c8d38201b55cf84c0.s3tc.ctex"
+uid="uid://bb52ibun87sn1"
+path.s3tc="res://.godot/imported/griptor normal final1.png-632fbbab8689cb28272b43c2141ebffa.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/griptor/griptor fleeing/griptor body fleeing rough2.png"
-dest_files=["res://.godot/imported/griptor body fleeing rough2.png-97aace1e2121208c8d38201b55cf84c0.s3tc.ctex"]
+source_file="res://assets/sprites/griptor/griptor normal final1.png"
+dest_files=["res://.godot/imported/griptor normal final1.png-632fbbab8689cb28272b43c2141ebffa.s3tc.ctex"]
 
 [params]
 

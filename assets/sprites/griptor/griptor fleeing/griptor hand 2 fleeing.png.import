@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b26g8q12585fe"
-path.s3tc="res://.godot/imported/griptor hand 2 fleeing.png-6c8450d69adb0a469b4d0de2d72823b7.s3tc.ctex"
+path.s3tc="res://.godot/imported/griptor hand 2 fleeing.png-563df347d8c882e8546bc0566699ce05.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/griptor fleeing/griptor hand 2 fleeing.png"
-dest_files=["res://.godot/imported/griptor hand 2 fleeing.png-6c8450d69adb0a469b4d0de2d72823b7.s3tc.ctex"]
+source_file="res://assets/sprites/griptor/griptor fleeing/griptor hand 2 fleeing.png"
+dest_files=["res://.godot/imported/griptor hand 2 fleeing.png-563df347d8c882e8546bc0566699ce05.s3tc.ctex"]
 
 [params]
 
