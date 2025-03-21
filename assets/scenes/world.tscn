@@ -155,7 +155,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5, -7)
 [node name="enemy_controller" type="Timer" parent="."]
 process_callback = 0
 wait_time = 5.0
-autostart = true
 script = ExtResource("5_vu0c7")
 
 [connection signal="timeout" from="enemy_controller" to="enemy_controller" method="_when_timeout"]
