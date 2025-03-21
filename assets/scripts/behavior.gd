@@ -130,6 +130,7 @@ func wait(delay : float) :
 
 
 func update_target_position():
+	if target_node == null: return
 	self.target_position = target_node.global_position
 
 

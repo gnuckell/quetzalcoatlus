@@ -115,6 +115,7 @@ collision_mask = 0
 shape = SubResource("CylinderShape3D_gc7y0")
 
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
 
 [node name="sprite" parent="navigation_region_3d/home/pawn_baby" index="0"]
 script = null

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_vpcnp"]
 [ext_resource type="Script" uid="uid://buut70qa10xom" path="res://assets/scripts/griptor/behavior_griptor.gd" id="2_3q6rm"]
 [ext_resource type="Texture2D" uid="uid://d7bjm8k5r6uy" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough1.png" id="2_uh4q8"]
-[ext_resource type="Texture2D" uid="uid://8elcwn073jjg" path="res://assets/sprites/griptor rough1.png" id="2_uj0wo"]
+[ext_resource type="Texture2D" uid="uid://bu0kt7gpa2phl" path="res://assets/sprites/griptor rough1.png" id="2_uj0wo"]
 [ext_resource type="Texture2D" uid="uid://cly6qwnkjnekt" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough2.png" id="3_2iwki"]
 [ext_resource type="Texture2D" uid="uid://cikq3jnkadxr5" path="res://assets/sprites/griptor rough2.png" id="3_q88t4"]
 [ext_resource type="Texture2D" uid="uid://b3por62fmriq8" path="res://assets/sprites/griptor fleeing/griptor body fleeing rough3.png" id="4_4ll0t"]
@@ -58,7 +58,8 @@ animations = [{
 
 [node name="pawn_griptor" instance=ExtResource("1_vpcnp")]
 species = &"griptor"
-walk_accel = 0.5
+walk_accel = 0.65
+walk_damping = 0.175
 
 [node name="sprite" parent="." index="0"]
 sorting_offset = -0.5

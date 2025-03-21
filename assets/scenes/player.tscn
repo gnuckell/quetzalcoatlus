@@ -22,7 +22,6 @@ radius = 1.5
 
 [node name="player" instance=ExtResource("1_rwm0n")]
 species = &"player"
-walk_accel = 0.8
 walk_damping = 0.175
 
 [node name="sprite" parent="." index="0"]

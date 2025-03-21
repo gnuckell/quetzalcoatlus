@@ -2,36 +2,11 @@
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
+[ext_resource type="Script" uid="uid://cfbrxxtlvo8om" path="res://assets/scripts/pawn_sprite.gd" id="2_efwbj"]
 [ext_resource type="Script" uid="uid://doj4vyigvl0ai" path="res://assets/scripts/reach_area.gd" id="3_ouwj3"]
 [ext_resource type="Script" uid="uid://cb0ybvp7mt17e" path="res://assets/scripts/behavior.gd" id="3_thq2t"]
 [ext_resource type="Script" uid="uid://bq6ujp8rovsjg" path="res://assets/scripts/grabber.gd" id="4_6lxlu"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="4_xig1i"]
-
-[sub_resource type="GDScript" id="GDScript_6lxlu"]
-resource_name = "pawn_sprite"
-script/source = "extends AnimatedSprite3D
-
-@onready var pawn : Pawn = get_parent()
-
-var turned : bool :
-	get: return flip_h
-	set(value):
-		if (flip_h == value): return
-		recursive_flip(self)
-		self.look_at(self.global_position + (Vector3.BACK if self.flip_h else Vector3.FORWARD))
-
-
-func _physics_process(delta: float) -> void:
-	if abs(pawn.velocity.x) > 0.1:
-		turned = pawn.velocity.x < 0.0
-
-
-func recursive_flip(sprite: SpriteBase3D) -> void:
-	sprite.flip_h = not sprite.flip_h
-	sprite.offset = sprite.offset * Vector2(-1, 1)
-	for child in sprite.get_children(): if child is SpriteBase3D: recursive_flip(child)
-	
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
@@ -66,7 +41,7 @@ walk_accel = 1.0
 [node name="sprite" type="AnimatedSprite3D" parent="."]
 billboard = 1
 alpha_cut = 1
-script = SubResource("GDScript_6lxlu")
+script = ExtResource("2_efwbj")
 
 [node name="placeholder" parent="sprite" instance=ExtResource("1_dxlvn")]
 text = "PAWN"

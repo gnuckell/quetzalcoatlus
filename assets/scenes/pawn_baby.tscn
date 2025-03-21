@@ -1,8 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=9 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
+[ext_resource type="Script" uid="uid://q6fm2d47uwbb" path="res://assets/scripts/baby/sprite_baby.gd" id="2_0hxpa"]
+[ext_resource type="Texture2D" uid="uid://c8wx5fm5x7v1i" path="res://assets/sprites/baby/baby gulping/baby gulp lineart7.png" id="2_gaxio"]
 [ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="3_w2hqq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc0gq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gaxio")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="Resource" id="Resource_0hxpa"]
 script = ExtResource("3_w2hqq")
@@ -21,7 +34,14 @@ species = &"baby"
 walk_accel = 0.1
 walk_damping = 0.05
 
+[node name="sprite" parent="." index="0"]
+offset = Vector2(300, 400)
+sprite_frames = SubResource("SpriteFrames_fc0gq")
+animation = &"idle"
+script = ExtResource("2_0hxpa")
+
 [node name="placeholder" parent="sprite" index="0"]
+visible = false
 text = "BABY"
 
 [node name="behavior" parent="." index="3"]
