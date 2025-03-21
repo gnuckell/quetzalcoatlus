@@ -10,6 +10,14 @@ var turned : bool :
 		self.look_at(self.global_position + (Vector3.BACK if self.flip_h else Vector3.FORWARD))
 
 
+var is_moving : bool :
+	get: return pawn.velocity.length_squared() > 0.1
+
+
+var is_playing_looping_animation : bool :
+	get: return self.sprite_frames.get_animation_loop(self.animation)
+
+
 func _physics_process(delta: float) -> void:
 	if abs(pawn.velocity.x) > 0.1:
 		turned = pawn.velocity.x < 0.0

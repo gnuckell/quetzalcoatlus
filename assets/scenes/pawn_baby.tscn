@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
-[ext_resource type="Script" uid="uid://q6fm2d47uwbb" path="res://assets/scripts/baby/sprite_baby.gd" id="2_0hxpa"]
+[ext_resource type="Script" path="res://assets/scripts/baby/sprite_baby.gd" id="2_0hxpa"]
 [ext_resource type="Texture2D" uid="uid://c8wx5fm5x7v1i" path="res://assets/sprites/baby/baby gulping/baby gulp lineart7.png" id="2_gaxio"]
 [ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="3_w2hqq"]

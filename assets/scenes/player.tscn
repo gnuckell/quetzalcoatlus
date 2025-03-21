@@ -1,20 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5b4j8rg2erfk"]
+[gd_scene load_steps=15 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
-[ext_resource type="Texture2D" uid="uid://cdniwa5lp2wa2" path="res://assets/sprites/player test2.png" id="2_s027a"]
+[ext_resource type="Texture2D" uid="uid://caq24ch0r0w8w" path="res://assets/sprites/player idle rough1.png" id="2_tc801"]
 [ext_resource type="Script" uid="uid://cyv7j6k7lrsao" path="res://assets/scripts/player/reach_area_player.gd" id="3_4wcc8"]
+[ext_resource type="Texture2D" uid="uid://1yl4rw4k2ym2" path="res://assets/sprites/player idle rough2.png" id="3_60g6h"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="3_14505"]
+[ext_resource type="Texture2D" uid="uid://cvsccfhtoveua" path="res://assets/sprites/player pecking/player pecking rough5.png" id="4_c6vv5"]
+[ext_resource type="Texture2D" uid="uid://dsbs6lc0mtpfe" path="res://assets/sprites/player walking rough1 and 2.png" id="4_hrrj1"]
 [ext_resource type="Script" uid="uid://by1ljqqv58u1q" path="res://assets/scripts/player/behavior_player.gd" id="5_8sknh"]
+[ext_resource type="Texture2D" uid="uid://twtac87qv3dk" path="res://assets/sprites/player walking rough3.png" id="5_c6vv5"]
+[ext_resource type="Texture2D" uid="uid://1j44svgpqgi8" path="res://assets/sprites/player pecking/player pecking rough7 out of 8.png" id="5_nh07x"]
+[ext_resource type="Texture2D" uid="uid://dn0p8k0poa4q3" path="res://assets/sprites/player walking rough4.png" id="6_nh07x"]
+[ext_resource type="Script" uid="uid://dquasv25vkgfw" path="res://assets/scripts/player/sprite_player.gd" id="9_c6vv5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_s027a")
+"texture": ExtResource("2_tc801")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_60g6h")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c6vv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nh07x")
+}],
+"loop": false,
+"name": &"peck",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hrrj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c6vv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nh07x")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
 }]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s027a"]
@@ -27,6 +62,10 @@ walk_damping = 0.175
 [node name="sprite" parent="." index="0"]
 offset = Vector2(180, 350)
 sprite_frames = SubResource("SpriteFrames_14505")
+animation = &"peck"
+frame = 1
+frame_progress = 1.0
+script = ExtResource("9_c6vv5")
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false
@@ -60,3 +99,4 @@ process_mode = 4
 autostart = false
 
 [connection signal="pecked" from="behavior" to="reach_area" method="peck"]
+[connection signal="pecked" from="behavior" to="sprite" method="play" binds= [&"peck"]]
