@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://463yol6alk3v"]
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://463yol6alk3v"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_bvx5f"]
 expanded_output_ports = [0]
@@ -8,9 +8,11 @@ input_name = "color"
 expanded_output_ports = [0]
 function = 2
 
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_cucfl"]
+
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 
 
@@ -22,15 +24,17 @@ void fragment() {
 
 
 // Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
 	ALPHA = n_out2p4;
 
 
 }
 "
-graph_offset = Vector2(-1153.28, -67.84)
+graph_offset = Vector2(-783.2, 49.2444)
+flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_bvx5f")
 nodes/fragment/2/position = Vector2(-1100, 160)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorFunc_cucfl")
 nodes/fragment/3/position = Vector2(-620, 0)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 2, 4, 0, 1, 2, 0, 3, 0)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_cucfl")
+nodes/fragment/4/position = Vector2(-1100, 560)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 2, 4, 0, 1)

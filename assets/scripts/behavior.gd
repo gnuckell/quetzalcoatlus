@@ -84,7 +84,7 @@ func wander():
 
 
 func get_walk_direction() -> Vector3:
-	return (self.get_next_path_position() - pawn.global_position).normalized() * Vector3(1, 0, 1)
+	return ((self.get_next_path_position() - pawn.global_position) * Vector3(1, 0, 1)).normalized()
 
 
 func _get_wander_position() -> Vector3:
