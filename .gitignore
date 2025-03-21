@@ -8,3 +8,4 @@
 *.png~
 *.kra-autosave.kra
 *.tmp
+.DS_Store

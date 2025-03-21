@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/player.tscn" id="1_ypxwc"]
 [ext_resource type="PackedScene" uid="uid://d3q1efqvmoxic" path="res://assets/scenes/pawn_baby.tscn" id="2_gc7y0"]
 [ext_resource type="PackedScene" uid="uid://c8kcvgjhtxjqw" path="res://assets/scenes/griptor_with_hole.tscn" id="4_0moxn"]
-[ext_resource type="Script" uid="uid://dfuipeitwehbj" path="res://assets/scripts/enemy_controller.gd" id="5_vu0c7"]
+[ext_resource type="Script" uid="uid://b0nyc0a5otg5e" path="res://assets/scripts/enemy_controller.gd" id="5_vu0c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ypxwc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,7 +33,7 @@ edge_max_error = 1.0
 size = Vector3(20, 2, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0moxn"]
-size = Vector3(181, 2, 180)
+size = Vector3(181, 2, 130)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gc7y0"]
 height = 10.0
@@ -97,7 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_gc7y0")
 
 [node name="shape_2" type="CollisionShape3D" parent="navigation_region_3d/floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -75)
 shape = SubResource("BoxShape3D_0moxn")
 
 [node name="home" type="Node3D" parent="navigation_region_3d"]
