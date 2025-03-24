@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
-[ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/player.tscn" id="1_ypxwc"]
+[ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/pawn_player.tscn" id="1_ypxwc"]
 [ext_resource type="PackedScene" uid="uid://d3q1efqvmoxic" path="res://assets/scenes/pawn_baby.tscn" id="2_gc7y0"]
 [ext_resource type="PackedScene" uid="uid://c8kcvgjhtxjqw" path="res://assets/scenes/griptor_with_hole.tscn" id="4_0moxn"]
 [ext_resource type="Script" uid="uid://b0nyc0a5otg5e" path="res://assets/scripts/enemy_controller.gd" id="5_vu0c7"]
@@ -111,6 +111,9 @@ shape = SubResource("CylinderShape3D_gc7y0")
 
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="placeholder" parent="navigation_region_3d/home/pawn_baby/test" index="0"]
+visible = true
 
 [node name="reach_area" parent="navigation_region_3d/home/pawn_baby" index="2"]
 collision_layer = 1

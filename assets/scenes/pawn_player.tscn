@@ -1,26 +1,29 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5b4j8rg2erfk"]
+[gd_scene load_steps=16 format=3 uid="uid://b5b4j8rg2erfk"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_rwm0n"]
-[ext_resource type="Texture2D" uid="uid://caq24ch0r0w8w" path="res://assets/sprites/player idle rough1.png" id="2_tc801"]
+[ext_resource type="Texture2D" uid="uid://doixdmwu3tota" path="res://assets/sprites/player/idle/player idle final1.png" id="2_76ib7"]
+[ext_resource type="Texture2D" uid="uid://d3c61ttrjjrms" path="res://assets/sprites/player/idle/player idle final2.png" id="3_3gc0l"]
 [ext_resource type="Script" uid="uid://cyv7j6k7lrsao" path="res://assets/scripts/player/reach_area_player.gd" id="3_4wcc8"]
-[ext_resource type="Texture2D" uid="uid://1yl4rw4k2ym2" path="res://assets/sprites/player idle rough2.png" id="3_60g6h"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="3_14505"]
-[ext_resource type="Texture2D" uid="uid://cvsccfhtoveua" path="res://assets/sprites/player pecking/player pecking rough5.png" id="4_c6vv5"]
-[ext_resource type="Texture2D" uid="uid://dsbs6lc0mtpfe" path="res://assets/sprites/player walking rough1 and 2.png" id="4_hrrj1"]
+[ext_resource type="Texture2D" uid="uid://hoqcd0a7ywvo" path="res://assets/sprites/player/pecking/player pecking final2.png" id="4_tkn5k"]
 [ext_resource type="Script" uid="uid://by1ljqqv58u1q" path="res://assets/scripts/player/behavior_player.gd" id="5_8sknh"]
-[ext_resource type="Texture2D" uid="uid://twtac87qv3dk" path="res://assets/sprites/player walking rough3.png" id="5_c6vv5"]
-[ext_resource type="Texture2D" uid="uid://1j44svgpqgi8" path="res://assets/sprites/player pecking/player pecking rough7 out of 8.png" id="5_nh07x"]
-[ext_resource type="Texture2D" uid="uid://dn0p8k0poa4q3" path="res://assets/sprites/player walking rough4.png" id="6_nh07x"]
+[ext_resource type="Texture2D" uid="uid://rr6h1v7axrax" path="res://assets/sprites/player/pecking/player pecking final3.png" id="5_npv8r"]
+[ext_resource type="Texture2D" uid="uid://c5uwmme210fl1" path="res://assets/sprites/player/walking/player walking final1.png" id="6_wjhrx"]
+[ext_resource type="Texture2D" uid="uid://bd16tr7kl8r23" path="res://assets/sprites/player/walking/player walking final2.png" id="7_2euxc"]
+[ext_resource type="Texture2D" uid="uid://du3syognnsmju" path="res://assets/sprites/player/walking/player walking final3.png" id="8_lof2y"]
 [ext_resource type="Script" uid="uid://dquasv25vkgfw" path="res://assets/scripts/player/sprite_player.gd" id="9_c6vv5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_14505"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wjhrx"]
+viewport_path = NodePath("test/sub_viewport")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2euxc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_tc801")
+"texture": ExtResource("2_76ib7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_60g6h")
+"texture": ExtResource("3_3gc0l")
 }],
 "loop": true,
 "name": &"idle",
@@ -28,10 +31,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_c6vv5")
+"texture": ExtResource("4_tkn5k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_nh07x")
+"texture": ExtResource("5_npv8r")
 }],
 "loop": false,
 "name": &"peck",
@@ -39,13 +42,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_hrrj1")
+"texture": ExtResource("6_wjhrx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_c6vv5")
+"texture": ExtResource("7_2euxc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_nh07x")
+"texture": ExtResource("8_lof2y")
 }],
 "loop": true,
 "name": &"walk",
@@ -59,18 +62,14 @@ radius = 1.5
 species = &"player"
 walk_damping = 0.175
 
-[node name="sprite" parent="." index="0"]
-offset = Vector2(180, 350)
-sprite_frames = SubResource("SpriteFrames_14505")
-animation = &"idle"
+[node name="test" parent="." index="0"]
+offset = Vector2(200, 350)
+texture = SubResource("ViewportTexture_wjhrx")
 script = ExtResource("9_c6vv5")
 
-[node name="placeholder" parent="sprite" index="0"]
-visible = false
-text = "PLAYER"
-
-[node name="grabber" parent="sprite" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+[node name="animated_sprite_2d" parent="test/sub_viewport" index="0"]
+sprite_frames = SubResource("SpriteFrames_2euxc")
+animation = &"idle"
 
 [node name="reach_area" parent="." index="2"]
 script = ExtResource("3_4wcc8")
@@ -97,4 +96,4 @@ process_mode = 4
 autostart = false
 
 [connection signal="pecked" from="behavior" to="reach_area" method="peck"]
-[connection signal="pecked" from="behavior" to="sprite" method="play" binds= [&"peck"]]
+[connection signal="pecked" from="behavior" to="test/sub_viewport/animated_sprite_2d" method="set_animation" binds= [&"peck"]]

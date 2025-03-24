@@ -41,12 +41,15 @@ script = ExtResource("1_bdn8e")
 behavior = NodePath("behavior")
 walk_accel = 1.0
 
-[node name="test" type="Sprite3D" parent="."]
+[node name="test" type="Sprite3D" parent="." node_paths=PackedStringArray("animated_sprite")]
 billboard = 1
 alpha_cut = 1
 texture = SubResource("ViewportTexture_uut47")
+script = ExtResource("2_efwbj")
+animated_sprite = NodePath("sub_viewport/animated_sprite_2d")
 
 [node name="placeholder" parent="test" instance=ExtResource("1_dxlvn")]
+visible = false
 text = "PAWN"
 
 [node name="grabber" type="Generic6DOFJoint3D" parent="test"]
@@ -59,11 +62,6 @@ size = Vector2i(1024, 1024)
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="test/sub_viewport"]
 centered = false
-
-[node name="sprite" type="AnimatedSprite3D" parent="."]
-billboard = 1
-alpha_cut = 1
-script = ExtResource("2_efwbj")
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
@@ -94,11 +92,10 @@ autostart = true
 process_callback = 0
 autostart = true
 
-[connection signal="animation_finished" from="sprite" to="sprite" method="_when_animation_finished"]
+[connection signal="animation_finished" from="test/sub_viewport/animated_sprite_2d" to="test" method="_when_animation_finished"]
 [connection signal="body_entered" from="reach_area" to="reach_area" method="_when_body_entered"]
 [connection signal="body_exited" from="reach_area" to="reach_area" method="_when_body_exited"]
 [connection signal="entered_selection" from="behavior" to="behavior" method="_when_entered_selection"]
 [connection signal="exited_selection" from="behavior" to="behavior" method="_when_exited_selection"]
-[connection signal="state_changed" from="behavior" to="sprite" method="_when_behavior_state_changed"]
 [connection signal="target_reached" from="behavior" to="behavior" method="_when_target_reached"]
 [connection signal="timeout" from="behavior/wander_timer" to="behavior" method="wander"]

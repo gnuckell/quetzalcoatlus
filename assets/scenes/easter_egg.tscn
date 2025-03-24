@@ -137,8 +137,3 @@ texture = SubResource("ViewportTexture_srkjy")
 
 [node name="animated_sprite_2d" parent="test/sub_viewport" index="0"]
 sprite_frames = SubResource("SpriteFrames_7o4gf")
-
-[node name="sprite" parent="." index="1"]
-offset = Vector2(275, 400)
-sprite_frames = SubResource("SpriteFrames_7o4gf")
-frame_progress = 0.827582

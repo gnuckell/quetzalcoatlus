@@ -4,7 +4,7 @@ var grown : bool
 
 
 func _ready() -> void:
-	self.play(&"idle")
+	animated_sprite.play(&"idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -22,9 +22,9 @@ func _physics_process(delta: float) -> void:
 	if grown and self.sprite_frames.has_animation(anim_name + &"_grown"):
 		anim_name += &"_grown"
 
-	self.play(anim_name)
+	animated_sprite.play(anim_name)
 
 
 func _when_animation_finished() -> void:
-	match self.animation:
-		&"gulp": self.play(&"idle")
+	match animated_sprite.animation:
+		&"gulp": animated_sprite.play(&"idle")

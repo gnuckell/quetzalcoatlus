@@ -4,7 +4,7 @@ var is_escaping : bool
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	self.play((&"run_fleeing" if is_escaping else &"run_normal") if is_moving else &"idle")
+	animated_sprite.play((&"run_fleeing" if is_escaping else &"run_normal") if is_moving else &"idle")
 
 
 func _when_behavior_state_changed(value: int) -> void:

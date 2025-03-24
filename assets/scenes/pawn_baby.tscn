@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=31 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
 [ext_resource type="Script" uid="uid://q6fm2d47uwbb" path="res://assets/scripts/baby/sprite_baby.gd" id="2_0hxpa"]
 [ext_resource type="Texture2D" uid="uid://qnqpdbcl25vy" path="res://assets/sprites/baby/baby eating/baby eating final1.png" id="2_ggha1"]
-[ext_resource type="Shader" uid="uid://463yol6alk3v" path="res://assets/shaders/baby_hue_shift.tres" id="2_ra5cn"]
 [ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
 [ext_resource type="Texture2D" uid="uid://bi1xpuaucrwgl" path="res://assets/sprites/baby/baby eating/baby eating final2.png" id="3_ra5cn"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="3_w2hqq"]
@@ -28,8 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://cotb2imqep18" path="res://assets/sprites/baby/baby whining/baby whining final2.png" id="20_6asto"]
 [ext_resource type="Texture2D" uid="uid://dedfv5wk2tm" path="res://assets/sprites/baby/baby whining/baby whining final3.png" id="21_cex2i"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob5b5"]
-shader = ExtResource("2_ra5cn")
+[sub_resource type="ViewportTexture" id="ViewportTexture_ra5cn"]
+viewport_path = NodePath("test/sub_viewport")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fc0gq"]
 animations = [{
@@ -341,16 +340,15 @@ species = &"baby"
 walk_accel = 0.1
 walk_damping = 0.05
 
-[node name="sprite" parent="." index="0"]
-material_overlay = SubResource("ShaderMaterial_ob5b5")
-offset = Vector2(275, 400)
-sprite_frames = SubResource("SpriteFrames_fc0gq")
-animation = &"scream"
+[node name="test" parent="." index="0"]
+offset = Vector2(-275, 400)
+flip_h = true
+texture = SubResource("ViewportTexture_ra5cn")
 script = ExtResource("2_0hxpa")
 
-[node name="placeholder" parent="sprite" index="0"]
-visible = false
-text = "BABY"
+[node name="animated_sprite_2d" parent="test/sub_viewport" index="0"]
+sprite_frames = SubResource("SpriteFrames_fc0gq")
+animation = &"scream"
 
 [node name="behavior" parent="." index="3"]
 script = ExtResource("2_v5ewb")
