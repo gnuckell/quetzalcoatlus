@@ -1,48 +1,204 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmfxo8pjam4ve"]
+[gd_scene load_steps=17 format=3 uid="uid://bmfxo8pjam4ve"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_mew20"]
-[ext_resource type="Texture2D" uid="uid://b5mrkti5aslh3" path="res://assets/sprites/marmot running lineart1.png" id="2_ga0rq"]
-[ext_resource type="Texture2D" uid="uid://bikvfw28sor2k" path="res://assets/sprites/marmot running lineart2.png" id="3_3r642"]
-[ext_resource type="Texture2D" uid="uid://c634m5rr1nj2g" path="res://assets/sprites/marmot suprised lineart1.png" id="3_4fbsv"]
+[ext_resource type="Texture2D" uid="uid://bfu5gk8rlwb02" path="res://assets/sprites/marmot/squirming/idle/marmot idle final1.png" id="2_k7o7e"]
+[ext_resource type="Texture2D" uid="uid://bu3jyc4ahfa3a" path="res://assets/sprites/marmot/squirming/idle/marmot idle final2.png" id="3_llxa8"]
+[ext_resource type="Texture2D" uid="uid://dv7ujhlx3gnmx" path="res://assets/sprites/marmot/squirming/idle/marmot idle final3.png" id="4_atb66"]
 [ext_resource type="Script" uid="uid://c5u1t3uadgrif" path="res://assets/scripts/marmot/behavior_marmot.gd" id="5_4fbsv"]
+[ext_resource type="Texture2D" uid="uid://555drokc335p" path="res://assets/sprites/marmot/squirming/idle/marmot idle final4.png" id="5_ratk7"]
+[ext_resource type="Texture2D" uid="uid://c0udj5a50412u" path="res://assets/sprites/marmot/squirming/idle/marmot idle final5.png" id="6_qy7hl"]
+[ext_resource type="Texture2D" uid="uid://fykcku00vh4h" path="res://assets/sprites/marmot/squirming/squirming/marmot squirming final1.png" id="7_cyyy8"]
+[ext_resource type="Texture2D" uid="uid://c01fidr86m1qw" path="res://assets/sprites/marmot/squirming/sees you/marmot sees you final1.png" id="7_llxa8"]
+[ext_resource type="Texture2D" uid="uid://c14qh5fqvmvip" path="res://assets/sprites/marmot/squirming/squirming/marmot squirming final2.png" id="8_8c6rk"]
+[ext_resource type="Texture2D" uid="uid://bj38g4weapvb4" path="res://assets/sprites/marmot/squirming/sees you/marmot sees you final2.png" id="8_atb66"]
+[ext_resource type="Texture2D" uid="uid://dvog3wlyvm6yv" path="res://assets/sprites/marmot/squirming/squirming/marmot squirming final3.png" id="9_c35sm"]
+[ext_resource type="Texture2D" uid="uid://dv20n4yoqbdgh" path="res://assets/sprites/marmot/squirming/squirming/marmot squirming final4.png" id="10_avfdm"]
+[ext_resource type="Texture2D" uid="uid://ptya4q21xtuv" path="res://assets/sprites/marmot/squirming/fleeing/marmot fleeing final1.png" id="13_fujnu"]
+[ext_resource type="Texture2D" uid="uid://cbas3jyhwmb03" path="res://assets/sprites/marmot/squirming/fleeing/marmot fleeing final2.png" id="14_conlc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4fbsv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ga0rq")
+"texture": ExtResource("13_fujnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_conlc")
+}],
+"loop": true,
+"name": &"flee",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k7o7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_atb66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ratk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qy7hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_atb66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ratk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qy7hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_llxa8")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_4fbsv")
+"texture": ExtResource("7_cyyy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8c6rk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c35sm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_avfdm")
+}],
+"loop": true,
+"name": &"squirm",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_llxa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_atb66")
 }],
 "loop": true,
 "name": &"surprise",
-"speed": 5.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ga0rq")
+"texture": ExtResource("13_fujnu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_3r642")
+"texture": ExtResource("14_conlc")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 12.0
+"speed": 8.0
 }]
 
 [node name="pawn_marmot" instance=ExtResource("1_mew20")]
 
 [node name="sprite" parent="." index="0"]
-offset = Vector2(300, 440)
+offset = Vector2(-300, 440)
+flip_h = true
 sprite_frames = SubResource("SpriteFrames_4fbsv")
-animation = &"walk"
-frame_progress = 0.160751
+animation = &"idle"
+frame_progress = 0.624262
 
 [node name="placeholder" parent="sprite" index="0"]
 visible = false

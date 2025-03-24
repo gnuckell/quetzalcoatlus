@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bumgbkyad4uw5"
+path="res://.godot/imported/Starving2.ogg-1d80be3a0637dcc1ad738b3c8d0c8c75.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/all sound oggs/Starving2.ogg"
+dest_files=["res://.godot/imported/Starving2.ogg-1d80be3a0637dcc1ad738b3c8d0c8c75.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

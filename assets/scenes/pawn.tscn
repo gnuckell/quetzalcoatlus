@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ir7jko68gpr2"]
+[gd_scene load_steps=12 format=3 uid="uid://ir7jko68gpr2"]
 
 [ext_resource type="Script" uid="uid://heep04q43cg6" path="res://assets/scripts/pawn.gd" id="1_bdn8e"]
 [ext_resource type="PackedScene" uid="uid://c1fvcg0dlxg2e" path="res://assets/scenes/placeholder.tscn" id="1_dxlvn"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://cb0ybvp7mt17e" path="res://assets/scripts/behavior.gd" id="3_thq2t"]
 [ext_resource type="Script" uid="uid://bq6ujp8rovsjg" path="res://assets/scripts/grabber.gd" id="4_6lxlu"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="4_xig1i"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uut47"]
+viewport_path = NodePath("test/sub_viewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st1bq"]
 size = Vector3(1, 1, 0.5)
@@ -38,25 +41,29 @@ script = ExtResource("1_bdn8e")
 behavior = NodePath("behavior")
 walk_accel = 1.0
 
+[node name="test" type="Sprite3D" parent="."]
+billboard = 1
+alpha_cut = 1
+texture = SubResource("ViewportTexture_uut47")
+
+[node name="placeholder" parent="test" instance=ExtResource("1_dxlvn")]
+text = "PAWN"
+
+[node name="grabber" type="Generic6DOFJoint3D" parent="test"]
+node_a = NodePath("../..")
+script = ExtResource("4_6lxlu")
+
+[node name="sub_viewport" type="SubViewport" parent="test"]
+transparent_bg = true
+size = Vector2i(1024, 1024)
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="test/sub_viewport"]
+centered = false
+
 [node name="sprite" type="AnimatedSprite3D" parent="."]
 billboard = 1
 alpha_cut = 1
 script = ExtResource("2_efwbj")
-
-[node name="placeholder" parent="sprite" instance=ExtResource("1_dxlvn")]
-text = "PAWN"
-
-[node name="sprite_area" type="Area3D" parent="sprite"]
-visible = false
-collision_layer = 8
-collision_mask = 0
-
-[node name="shape" type="CollisionShape3D" parent="sprite/sprite_area"]
-shape = SubResource("BoxShape3D_st1bq")
-
-[node name="grabber" type="Generic6DOFJoint3D" parent="sprite"]
-node_a = NodePath("../..")
-script = ExtResource("4_6lxlu")
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
@@ -74,7 +81,7 @@ path_desired_distance = 0.5
 target_desired_distance = 0.5
 debug_enabled = true
 script = ExtResource("3_thq2t")
-grabber = NodePath("../sprite/grabber")
+grabber = NodePath("../test/grabber")
 wander_distance_range = SubResource("Resource_ouwj3")
 wander_time_range = SubResource("Resource_6lxlu")
 

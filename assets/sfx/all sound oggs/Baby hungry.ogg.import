@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dhjdcs208vr0y"
+path="res://.godot/imported/Baby hungry.ogg-a4f77007bc5dd8582b5034e0f17b1482.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/all sound oggs/Baby hungry.ogg"
+dest_files=["res://.godot/imported/Baby hungry.ogg-a4f77007bc5dd8582b5034e0f17b1482.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

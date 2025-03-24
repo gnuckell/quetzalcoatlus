@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ce2t6qykk4y2l"
+path="res://.godot/imported/Marmot fighting for its life.wav-fecf62ae358139c7e54ac7449e4680f7.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Marmot fighting for its life.wav"
+dest_files=["res://.godot/imported/Marmot fighting for its life.wav-fecf62ae358139c7e54ac7449e4680f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,127 +1,248 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3q1efqvmoxic"]
+[gd_scene load_steps=32 format=3 uid="uid://d3q1efqvmoxic"]
 
 [ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_yhtjp"]
 [ext_resource type="Script" uid="uid://q6fm2d47uwbb" path="res://assets/scripts/baby/sprite_baby.gd" id="2_0hxpa"]
-[ext_resource type="Texture2D" uid="uid://d0s4lo2qi8agv" path="res://assets/sprites/baby/baby gulping/baby gulp lineart1.png" id="2_1y0bu"]
-[ext_resource type="Texture2D" uid="uid://c8wx5fm5x7v1i" path="res://assets/sprites/baby/baby gulping/baby gulp lineart7.png" id="2_gaxio"]
+[ext_resource type="Texture2D" uid="uid://qnqpdbcl25vy" path="res://assets/sprites/baby/baby eating/baby eating final1.png" id="2_ggha1"]
+[ext_resource type="Shader" uid="uid://463yol6alk3v" path="res://assets/shaders/baby_hue_shift.tres" id="2_ra5cn"]
 [ext_resource type="Script" uid="uid://buqdmfdxamuut" path="res://assets/scripts/baby/behavior_baby.gd" id="2_v5ewb"]
-[ext_resource type="Texture2D" uid="uid://wcbvi5ovc2iq" path="res://assets/sprites/baby/baby gulping/baby gulp lineart2.png" id="3_gt6r5"]
+[ext_resource type="Texture2D" uid="uid://bi1xpuaucrwgl" path="res://assets/sprites/baby/baby eating/baby eating final2.png" id="3_ra5cn"]
 [ext_resource type="Script" uid="uid://bfm2m5jgefara" path="res://assets/scripts/float_range.gd" id="3_w2hqq"]
-[ext_resource type="Texture2D" uid="uid://dn33l0586nxbv" path="res://assets/sprites/baby/baby gulping/baby gulp lineart3.png" id="4_4bmu7"]
-[ext_resource type="Texture2D" uid="uid://6pan8thw8tac" path="res://assets/sprites/baby/baby gulping/baby gulp lineart4.png" id="5_fslj1"]
-[ext_resource type="Texture2D" uid="uid://blnuwtutnjh5j" path="res://assets/sprites/baby/baby gulping/baby gulp lineart5.png" id="6_mmgq4"]
-[ext_resource type="Texture2D" uid="uid://bfp321ajf8qps" path="res://assets/sprites/baby/baby gulping/baby gulp lineart6.png" id="7_fs7k3"]
-[ext_resource type="Texture2D" uid="uid://b3rktnj2k16o" path="res://assets/sprites/baby/baby gulping/baby gulp lineart8.png" id="9_e0uln"]
-[ext_resource type="Texture2D" uid="uid://s5iac0whhaqk" path="res://assets/sprites/baby/baby final form lineart.png" id="10_71h5b"]
+[ext_resource type="Texture2D" uid="uid://68swghaqvigo" path="res://assets/sprites/baby/baby eating/baby eating final3.png" id="4_ob5b5"]
+[ext_resource type="Texture2D" uid="uid://b3vmxbsifm8ha" path="res://assets/sprites/baby/baby eating/baby eating final4.png" id="5_6asto"]
+[ext_resource type="Texture2D" uid="uid://wejyerakn2gc" path="res://assets/sprites/baby/baby eating/baby eating final5.png" id="6_cex2i"]
+[ext_resource type="Texture2D" uid="uid://ghwqiu0qce3q" path="res://assets/sprites/baby/baby eating/baby eating final6.png" id="7_3h404"]
+[ext_resource type="Texture2D" uid="uid://ch1ttdng535wv" path="res://assets/sprites/baby/baby eating/baby eating final7.png" id="8_nge6f"]
+[ext_resource type="Texture2D" uid="uid://be1vt6xutlca4" path="res://assets/sprites/baby/baby eating/baby eating final8.png" id="9_pid7q"]
+[ext_resource type="Texture2D" uid="uid://bnroher2aerdh" path="res://assets/sprites/baby/baby eating/baby eating final9.png" id="10_x2hu8"]
 [ext_resource type="Texture2D" uid="uid://cmlcqxxequ3b7" path="res://assets/sprites/baby/baby screaming/baby screaming final1.png" id="11_71h5b"]
+[ext_resource type="Texture2D" uid="uid://ddsw5m1mut7yx" path="res://assets/sprites/baby/baby eating/baby eating final10.png" id="11_rfklq"]
 [ext_resource type="Texture2D" uid="uid://c6smkj4g0lj72" path="res://assets/sprites/baby/baby screaming/baby  screaming final2.png" id="12_0m234"]
+[ext_resource type="Texture2D" uid="uid://6lcg0grq2wm2" path="res://assets/sprites/baby/baby starved/baby starved.png" id="12_ggha1"]
 [ext_resource type="Texture2D" uid="uid://bffxlv58f6e4a" path="res://assets/sprites/baby/baby screaming/baby screaming final3.png" id="13_asemj"]
-[ext_resource type="Texture2D" uid="uid://dniv572f28wt3" path="res://assets/sprites/baby/baby screaming/baby grown screaming lineart1.png" id="14_ra5cn"]
-[ext_resource type="Texture2D" uid="uid://vyynn77utgum" path="res://assets/sprites/baby/baby screaming/baby grown screaming lineart2.png" id="15_ob5b5"]
-[ext_resource type="Texture2D" uid="uid://cjjoo482gogas" path="res://assets/sprites/baby/baby screaming/baby grown screaming lineart3.png" id="16_6asto"]
-[ext_resource type="Texture2D" uid="uid://rxo1w2ayvh8d" path="res://assets/sprites/baby/baby whining/baby whining lineart4.png" id="17_cex2i"]
-[ext_resource type="Texture2D" uid="uid://c41sl4ed77pj5" path="res://assets/sprites/baby/baby whining/baby whining lineart1.png" id="18_3h404"]
-[ext_resource type="Texture2D" uid="uid://vfwp85cm13cn" path="res://assets/sprites/baby/baby whining/baby whining lineart2.png" id="19_nge6f"]
-[ext_resource type="Texture2D" uid="uid://ccjt87om64m1i" path="res://assets/sprites/baby/baby whining/baby whining lineart3.png" id="20_pid7q"]
+[ext_resource type="Texture2D" uid="uid://dserjc6geu218" path="res://assets/sprites/baby/baby starved/baby starved2.png" id="13_ra5cn"]
+[ext_resource type="Texture2D" uid="uid://v65buo625red" path="res://assets/sprites/baby/baby screaming/baby grown screaming final1.png" id="15_0m234"]
+[ext_resource type="Texture2D" uid="uid://v2cw2547gnlh" path="res://assets/sprites/baby/baby screaming/baby grown screaming final2.png" id="16_asemj"]
+[ext_resource type="Texture2D" uid="uid://daa6ho64e5stw" path="res://assets/sprites/baby/baby screaming/baby grown screaming final3.png" id="17_ggha1"]
+[ext_resource type="Texture2D" uid="uid://b7o1jq5a8t103" path="res://assets/sprites/baby/baby whining/baby whining final4.png" id="18_ra5cn"]
+[ext_resource type="Texture2D" uid="uid://vxgitjb6gsne" path="res://assets/sprites/baby/baby whining/baby whining final1.png" id="19_ob5b5"]
+[ext_resource type="Texture2D" uid="uid://cotb2imqep18" path="res://assets/sprites/baby/baby whining/baby whining final2.png" id="20_6asto"]
+[ext_resource type="Texture2D" uid="uid://dedfv5wk2tm" path="res://assets/sprites/baby/baby whining/baby whining final3.png" id="21_cex2i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob5b5"]
+shader = ExtResource("2_ra5cn")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fc0gq"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ra5cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ggha1")
+}, {
 "duration": 2.0,
-"texture": ExtResource("2_1y0bu")
+"texture": ExtResource("4_ob5b5")
 }, {
 "duration": 2.0,
-"texture": ExtResource("3_gt6r5")
+"texture": ExtResource("5_6asto")
 }, {
 "duration": 2.0,
-"texture": ExtResource("4_4bmu7")
+"texture": ExtResource("6_cex2i")
 }, {
 "duration": 2.0,
-"texture": ExtResource("5_fslj1")
+"texture": ExtResource("7_3h404")
 }, {
 "duration": 2.0,
-"texture": ExtResource("6_mmgq4")
+"texture": ExtResource("8_nge6f")
 }, {
 "duration": 2.0,
-"texture": ExtResource("7_fs7k3")
+"texture": ExtResource("9_pid7q")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_ra5cn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_e0uln")
+"texture": ExtResource("11_rfklq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x2hu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rfklq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x2hu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rfklq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x2hu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rfklq")
 }],
 "loop": false,
 "name": &"gulp",
@@ -129,25 +250,27 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gaxio")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_gaxio")
+"texture": ExtResource("10_x2hu8")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 12.0
+"speed": 24.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_71h5b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_71h5b")
-}],
+"frames": [],
 "loop": true,
 "name": &"idle_grown",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ggha1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ra5cn")
+}],
+"loop": true,
+"name": &"idle_starved",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,13 +288,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_ra5cn")
+"texture": ExtResource("15_0m234")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_ob5b5")
+"texture": ExtResource("16_asemj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_6asto")
+"texture": ExtResource("17_ggha1")
 }],
 "loop": true,
 "name": &"scream_grown",
@@ -179,20 +302,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_cex2i")
+"texture": ExtResource("18_ra5cn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_3h404")
+"texture": ExtResource("19_ob5b5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_nge6f")
+"texture": ExtResource("20_6asto")
+}, {
+"duration": 2.0,
+"texture": ExtResource("21_cex2i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_pid7q")
+"texture": ExtResource("20_6asto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ob5b5")
 }],
 "loop": true,
 "name": &"whine",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="Resource" id="Resource_0hxpa"]
@@ -213,10 +342,10 @@ walk_accel = 0.1
 walk_damping = 0.05
 
 [node name="sprite" parent="." index="0"]
+material_overlay = SubResource("ShaderMaterial_ob5b5")
 offset = Vector2(275, 400)
 sprite_frames = SubResource("SpriteFrames_fc0gq")
 animation = &"scream"
-frame_progress = 0.278913
 script = ExtResource("2_0hxpa")
 
 [node name="placeholder" parent="sprite" index="0"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://gd8sl08dad7k"
+path="res://.godot/imported/Griptor when losing baby.wav-d5beac9a8ffa6247cd21e3d78a9f9020.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Griptor when losing baby.wav"
+dest_files=["res://.godot/imported/Griptor when losing baby.wav-d5beac9a8ffa6247cd21e3d78a9f9020.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byyauray3poiw"
+path="res://.godot/imported/Starving dying.ogg-77305dd6eba310e91e4ee4a53ac0f2a1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/all sound oggs/Starving dying.ogg"
+dest_files=["res://.godot/imported/Starving dying.ogg-77305dd6eba310e91e4ee4a53ac0f2a1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

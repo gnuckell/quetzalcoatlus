@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d3v3yac51pyty"
+path="res://.godot/imported/Griptor empty handed.ogg-75f00338afda3644b65f3eebee03946b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/all sound oggs/Griptor empty handed.ogg"
+dest_files=["res://.godot/imported/Griptor empty handed.ogg-75f00338afda3644b65f3eebee03946b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

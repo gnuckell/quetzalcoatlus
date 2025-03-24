@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cjjxt1s8pyuh3"
+path="res://.godot/imported/Baby Sounds.ogg-5cfd77ec260f2adeb2b15a70d1564d69.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/all sound oggs/Baby Sounds.ogg"
+dest_files=["res://.godot/imported/Baby Sounds.ogg-5cfd77ec260f2adeb2b15a70d1564d69.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

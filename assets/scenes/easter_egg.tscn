@@ -1,0 +1,144 @@
+[gd_scene load_steps=33 format=3 uid="uid://ccx5rkq0wtj00"]
+
+[ext_resource type="PackedScene" uid="uid://ir7jko68gpr2" path="res://assets/scenes/pawn.tscn" id="1_srkjy"]
+[ext_resource type="Texture2D" uid="uid://bdlnhu47eun60" path="res://assets/sprites/egg frames/egg1.png" id="2_t76jg"]
+[ext_resource type="Texture2D" uid="uid://cdwjm5s0dkujv" path="res://assets/sprites/egg frames/egg2.png" id="3_5doie"]
+[ext_resource type="Texture2D" uid="uid://7j3p2yu2vruj" path="res://assets/sprites/egg frames/egg3.png" id="4_oypxo"]
+[ext_resource type="Texture2D" uid="uid://csx8yv5vb5iiv" path="res://assets/sprites/egg frames/egg4.png" id="5_yvex0"]
+[ext_resource type="Texture2D" uid="uid://gxqxj3dnbhvq" path="res://assets/sprites/egg frames/egg5.png" id="6_u15ym"]
+[ext_resource type="Texture2D" uid="uid://dhslg1o505ama" path="res://assets/sprites/egg frames/egg6.png" id="7_3nysb"]
+[ext_resource type="Texture2D" uid="uid://djuw12xf06lg6" path="res://assets/sprites/egg frames/egg7.png" id="8_q2pmc"]
+[ext_resource type="Texture2D" uid="uid://bs1y5ptns4qyb" path="res://assets/sprites/egg frames/egg8.png" id="9_wq4lw"]
+[ext_resource type="Texture2D" uid="uid://bsody3knnvqf1" path="res://assets/sprites/egg frames/egg9.png" id="10_j47ax"]
+[ext_resource type="Texture2D" uid="uid://dmuwjfw8kcdak" path="res://assets/sprites/egg frames/egg10.png" id="11_hhwnd"]
+[ext_resource type="Texture2D" uid="uid://ctxyvarit6xbf" path="res://assets/sprites/egg frames/egg11.png" id="12_u0n78"]
+[ext_resource type="Texture2D" uid="uid://bxxyc2vqwrd27" path="res://assets/sprites/egg frames/egg12.png" id="13_s7u4q"]
+[ext_resource type="Texture2D" uid="uid://bngbsumig1qae" path="res://assets/sprites/egg frames/egg13.png" id="14_2uqje"]
+[ext_resource type="Texture2D" uid="uid://djpnpfuc2igq5" path="res://assets/sprites/egg frames/egg14.png" id="15_nyjc6"]
+[ext_resource type="Texture2D" uid="uid://dec1mc245sdlt" path="res://assets/sprites/egg frames/egg15.png" id="16_ryv65"]
+[ext_resource type="Texture2D" uid="uid://das4q15ctfkop" path="res://assets/sprites/egg frames/egg16.png" id="17_d6w55"]
+[ext_resource type="Texture2D" uid="uid://cqvkbbg3weyf3" path="res://assets/sprites/egg frames/egg17.png" id="18_sbec3"]
+[ext_resource type="Texture2D" uid="uid://cynvpac2bm5h5" path="res://assets/sprites/egg frames/egg18.png" id="19_4wswc"]
+[ext_resource type="Texture2D" uid="uid://cc11pd37wvxc3" path="res://assets/sprites/egg frames/egg19.png" id="20_bvhfr"]
+[ext_resource type="Texture2D" uid="uid://dn16awxibdkvf" path="res://assets/sprites/egg frames/egg20.png" id="21_ta76l"]
+[ext_resource type="Texture2D" uid="uid://cxteonujamv26" path="res://assets/sprites/egg frames/egg21.png" id="22_m1jbf"]
+[ext_resource type="Texture2D" uid="uid://bgyx8b16hqujx" path="res://assets/sprites/egg frames/egg22.png" id="23_6015m"]
+[ext_resource type="Texture2D" uid="uid://br2601gf2kf6w" path="res://assets/sprites/egg frames/egg23.png" id="24_5mixm"]
+[ext_resource type="Texture2D" uid="uid://bii3jap4hir74" path="res://assets/sprites/egg frames/egg24.png" id="25_xunmj"]
+[ext_resource type="Texture2D" uid="uid://kxeq8vc4qwui" path="res://assets/sprites/egg frames/egg25.png" id="26_sose6"]
+[ext_resource type="Texture2D" uid="uid://3g0ereo8kjlc" path="res://assets/sprites/egg frames/egg26.png" id="27_46fmm"]
+[ext_resource type="Texture2D" uid="uid://dv0sf361u7cw" path="res://assets/sprites/egg frames/egg27.png" id="28_tbhid"]
+[ext_resource type="Texture2D" uid="uid://cxg4bde4nuh2t" path="res://assets/sprites/egg frames/egg28.png" id="29_hfbl0"]
+[ext_resource type="Texture2D" uid="uid://dwafvwxwdfe3g" path="res://assets/sprites/egg frames/egg29.png" id="30_mc2xa"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_srkjy"]
+viewport_path = NodePath("test/sub_viewport")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7o4gf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t76jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5doie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oypxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yvex0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u15ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3nysb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_q2pmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wq4lw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j47ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hhwnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_u0n78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s7u4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2uqje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nyjc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ryv65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_d6w55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_sbec3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4wswc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_bvhfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ta76l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_m1jbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6015m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5mixm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_xunmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_sose6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_46fmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_tbhid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_hfbl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_mc2xa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="easter_egg" instance=ExtResource("1_srkjy")]
+
+[node name="test" parent="." index="0"]
+offset = Vector2(275, 400)
+texture = SubResource("ViewportTexture_srkjy")
+
+[node name="animated_sprite_2d" parent="test/sub_viewport" index="0"]
+sprite_frames = SubResource("SpriteFrames_7o4gf")
+
+[node name="sprite" parent="." index="1"]
+offset = Vector2(275, 400)
+sprite_frames = SubResource("SpriteFrames_7o4gf")
+frame_progress = 0.827582
