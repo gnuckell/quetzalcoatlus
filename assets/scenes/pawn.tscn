@@ -63,6 +63,8 @@ size = Vector2i(1024, 1024)
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="test/sub_viewport"]
 centered = false
 
+[node name="audio_stream_player_3d" type="AudioStreamPlayer3D" parent="."]
+
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_st1bq")
 

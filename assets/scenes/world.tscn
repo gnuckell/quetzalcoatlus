@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddr2477jk1xyg"]
+[gd_scene load_steps=17 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/pawn_player.tscn" id="1_ypxwc"]
 [ext_resource type="PackedScene" uid="uid://d3q1efqvmoxic" path="res://assets/scenes/pawn_baby.tscn" id="2_gc7y0"]
+[ext_resource type="Material" uid="uid://bggrqfp8yx15h" path="res://assets/materials/baby_red.tres" id="3_bd1kc"]
 [ext_resource type="PackedScene" uid="uid://c8kcvgjhtxjqw" path="res://assets/scenes/griptor_with_hole.tscn" id="4_0moxn"]
 [ext_resource type="Script" uid="uid://b0nyc0a5otg5e" path="res://assets/scripts/enemy_controller.gd" id="5_vu0c7"]
 
@@ -38,6 +39,9 @@ size = Vector3(181, 2, 130)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gc7y0"]
 height = 10.0
 radius = 5.25
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vu0c7"]
+viewport_path = NodePath("test/sub_viewport")
 
 [sub_resource type="GDScript" id="GDScript_ouwj3"]
 resource_name = "reach_area"
@@ -112,15 +116,21 @@ shape = SubResource("CylinderShape3D_gc7y0")
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
 
-[node name="placeholder" parent="navigation_region_3d/home/pawn_baby/test" index="0"]
-visible = true
+[node name="test" parent="navigation_region_3d/home/pawn_baby" index="0"]
+texture = SubResource("ViewportTexture_vu0c7")
 
-[node name="reach_area" parent="navigation_region_3d/home/pawn_baby" index="2"]
+[node name="animated_sprite_2d" parent="navigation_region_3d/home/pawn_baby/test/sub_viewport" index="0"]
+material = ExtResource("3_bd1kc")
+
+[node name="reach_area" parent="navigation_region_3d/home/pawn_baby" index="3"]
 collision_layer = 1
 collision_mask = 1
 script = SubResource("GDScript_ouwj3")
 
-[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="3" node_paths=PackedStringArray("home_area")]
+[node name="shape" parent="navigation_region_3d/home/pawn_baby/reach_area" index="0"]
+script = null
+
+[node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="4" node_paths=PackedStringArray("home_area")]
 home_area = NodePath("../../area")
 
 [node name="player" parent="." instance=ExtResource("1_ypxwc")]
@@ -152,6 +162,10 @@ process_callback = 0
 autostart = true
 script = ExtResource("5_vu0c7")
 
+[connection signal="entered_selection" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_entered_selection"]
+[connection signal="exited_selection" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_exited_selection"]
+[connection signal="target_reached" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_target_reached"]
+[connection signal="timeout" from="navigation_region_3d/home/pawn_baby/behavior/wander_timer" to="navigation_region_3d/home/pawn_baby/behavior" method="wander"]
 [connection signal="timeout" from="enemy_controller" to="enemy_controller" method="_when_timeout"]
 
 [editable path="navigation_region_3d/home/model"]

@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_xntj8")
-shader_parameter/hue_shift = 0.0
+shader_parameter/hue_shift = 0.963
 shader_parameter/sat_scalar = 1.0
 shader_parameter/val_scalar = 1.0
