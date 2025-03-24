@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddr2477jk1xyg"]
+[gd_scene load_steps=16 format=3 uid="uid://ddr2477jk1xyg"]
 
 [ext_resource type="PackedScene" uid="uid://044rticob8ap" path="res://assets/models/home_nest.blend" id="1_betll"]
 [ext_resource type="PackedScene" uid="uid://b5b4j8rg2erfk" path="res://assets/scenes/pawn_player.tscn" id="1_ypxwc"]
@@ -39,9 +39,6 @@ size = Vector3(181, 2, 130)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gc7y0"]
 height = 10.0
 radius = 5.25
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_vu0c7"]
-viewport_path = NodePath("test/sub_viewport")
 
 [sub_resource type="GDScript" id="GDScript_ouwj3"]
 resource_name = "reach_area"
@@ -116,9 +113,6 @@ shape = SubResource("CylinderShape3D_gc7y0")
 [node name="pawn_baby" parent="navigation_region_3d/home" instance=ExtResource("2_gc7y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
 
-[node name="test" parent="navigation_region_3d/home/pawn_baby" index="0"]
-texture = SubResource("ViewportTexture_vu0c7")
-
 [node name="animated_sprite_2d" parent="navigation_region_3d/home/pawn_baby/test/sub_viewport" index="0"]
 material = ExtResource("3_bd1kc")
 
@@ -126,9 +120,6 @@ material = ExtResource("3_bd1kc")
 collision_layer = 1
 collision_mask = 1
 script = SubResource("GDScript_ouwj3")
-
-[node name="shape" parent="navigation_region_3d/home/pawn_baby/reach_area" index="0"]
-script = null
 
 [node name="behavior" parent="navigation_region_3d/home/pawn_baby" index="4" node_paths=PackedStringArray("home_area")]
 home_area = NodePath("../../area")
@@ -162,10 +153,6 @@ process_callback = 0
 autostart = true
 script = ExtResource("5_vu0c7")
 
-[connection signal="entered_selection" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_entered_selection"]
-[connection signal="exited_selection" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_exited_selection"]
-[connection signal="target_reached" from="navigation_region_3d/home/pawn_baby/behavior" to="navigation_region_3d/home/pawn_baby/behavior" method="_when_target_reached"]
-[connection signal="timeout" from="navigation_region_3d/home/pawn_baby/behavior/wander_timer" to="navigation_region_3d/home/pawn_baby/behavior" method="wander"]
 [connection signal="timeout" from="enemy_controller" to="enemy_controller" method="_when_timeout"]
 
 [editable path="navigation_region_3d/home/model"]

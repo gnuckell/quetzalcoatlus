@@ -207,7 +207,7 @@ script = ExtResource("2_8c6rk")
 sprite_frames = SubResource("SpriteFrames_4fbsv")
 animation = &"idle"
 
-[node name="behavior" parent="." index="3"]
+[node name="behavior" parent="." index="4"]
 script = ExtResource("5_4fbsv")
 wander_distance_range = null
 wander_time_range = null

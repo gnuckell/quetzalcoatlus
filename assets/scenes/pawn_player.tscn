@@ -71,7 +71,7 @@ script = ExtResource("9_c6vv5")
 sprite_frames = SubResource("SpriteFrames_2euxc")
 animation = &"idle"
 
-[node name="reach_area" parent="." index="2"]
+[node name="reach_area" parent="." index="3"]
 script = ExtResource("3_4wcc8")
 
 [node name="shape" parent="reach_area" index="0"]
@@ -84,7 +84,7 @@ shape = SubResource("CylinderShape3D_s027a")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
 text = "SELECTION"
 
-[node name="behavior" parent="." index="3"]
+[node name="behavior" parent="." index="4"]
 script = ExtResource("5_8sknh")
 wander_distance_range = null
 wander_time_range = null
